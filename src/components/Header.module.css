@@ -1,0 +1,15 @@
+.header {
+	grid-area: h;
+	background-color: rgb(230, 230, 230);
+	display: flex;
+	align-items: center;
+}
+.header img {
+	height: 100px;
+	padding: 10px;
+}
+
+.title {
+	font-size: 40px;
+	color: rgb(70, 101, 167);
+}

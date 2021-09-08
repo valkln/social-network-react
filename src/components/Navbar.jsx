@@ -1,12 +1,13 @@
+import s from './Navbar.module.css'
 export default function Navbar() {
 	return (
-		<nav className='nav'>
+		<nav className={s.nav}>
 			<ul>
-				<a href='#'><li>Profile</li></a>
-				<a href='#'><li>Messages</li></a>
-				<a href='#'><li>News</li></a>
-				<a href='#'><li>Music</li></a>
-				<a href='#'><li>Settings</li></a>
+				<a href='#' className={s.link}><li className={s.item}>Profile</li></a>
+				<a href='#' className={s.link}><li className={s.item}>Messages</li></a>
+				<a href='#' className={s.link}><li className={s.item}>News</li></a>
+				<a href='#' className={s.link}><li className={s.item}>Music</li></a>
+				<a href='#' className={s.link}><li className={s.item}>Settings</li></a>
 			</ul>
 		</nav>
 	);
