@@ -14,10 +14,18 @@
 
 .content {
 	padding: 15px;
+	display: flex;
+	flex-direction: column;
 }
 
 span {
 	font-size: 18px;
 	padding: 0 10px;
 	font-weight: 700;
+}
+.social {
+	flex: 0 0 20%;
+}
+.message {
+	flex: 1 0 80%;
 }

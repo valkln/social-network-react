@@ -88,3 +88,7 @@ h6 {
   grid-template-rows: 100px 1fr;
   /*grid-gap: 10px;*/
 }
+.app-wrapper-content {
+  grid-area: c;
+  background-color: rgb(24, 158, 91);
+}

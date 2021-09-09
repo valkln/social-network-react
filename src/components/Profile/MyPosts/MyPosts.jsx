@@ -6,10 +6,11 @@ export default function MyPosts() {
 			<h3>posts</h3>
 			<p>What's new?</p>
 			<textarea></textarea>
+			<br />
 			<button>Add new post</button>
-			<Post />
-			<Post />
-			<Post />
+			<Post message="Buy some chocolate, mate." />
+			<Post message="I'm the original Hetman!" />
+			<Post message="Hi! It's my first post!" />
 		</ div>
 	);
 }

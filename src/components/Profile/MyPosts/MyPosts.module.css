@@ -4,8 +4,19 @@
 	padding: 20px;
 }
 textarea {
+	padding: 20px;
 	height: 100px;
-	width: 400px;
+	width: 600px;
+	box-shadow: 1px 1px 10px black;
+	border-radius: 30px;
+}
+button {
+	background-color: #b2c227;
+	padding: 5px 10px;
+	margin: 10px 20px;
+	border-radius: 10px;
+	box-shadow: 1px 1px 3px #7f8a1c;
+	font-size: 16px;
 }
 p {
 	font-size: 20px;
