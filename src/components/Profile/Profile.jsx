@@ -1,5 +1,6 @@
 import s from './Profile.module.css'
-import ava from '../img/peter.jpg';
+import ava from '../../img/peter.jpg';
+import MyPosts from './MyPosts/MyPosts';
 export default function Profile() {
 	return (
 		<div className={s.profile}>
@@ -9,14 +10,11 @@ export default function Profile() {
 				<div className={s.userinfo}>
 					<div className={s.username}>Peter Lions</div>
 					<div className={s.userbio}>Ex-President of Ukraine</div>
+					<div className={s.usercity}>City: Kyiv</div>
+					<div className={s.userage}>Age: 56</div>
 				</div>
 			</div>
-			<div className={s.posts}>posts</div>
-			<div><h3>new posts</h3>
-				<div>post 1</div>
-				<div>post 2</div>
-				<div>post 3</div>
-			</div>
+			<MyPosts />
 		</div>
 	);
 }

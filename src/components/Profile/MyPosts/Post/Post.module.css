@@ -1,0 +1,23 @@
+.Post {
+	font-size: 16px;
+	margin: 10px 0;
+	padding: 10px 15px;
+	border-radius: 20px;
+	background-color: rgb(178, 194, 39);
+	display: flex;
+	text-transform: none;
+}
+.ava {
+	width: 100px;
+	border-radius: 40px;
+}
+
+.content {
+	padding: 15px;
+}
+
+span {
+	font-size: 18px;
+	padding: 0 10px;
+	font-weight: 700;
+}

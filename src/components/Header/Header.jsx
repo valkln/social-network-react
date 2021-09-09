@@ -1,5 +1,5 @@
 import s from './Header.module.css'
-import logo from '../img/logo.png'
+import logo from '../../img/logo.png'
 export default function Header() {
 	return (
 		<header className={s.header}>

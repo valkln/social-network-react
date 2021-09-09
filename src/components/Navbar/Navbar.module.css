@@ -1,6 +1,10 @@
 .nav {
 	grid-area: n;
 	background-color: rgb(161, 161, 161);
+}
+.nav ul {
+	position: sticky;
+	top: 0px;
 	padding-top: 10px;
 }
 .link {
