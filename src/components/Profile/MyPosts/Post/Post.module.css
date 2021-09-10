@@ -24,8 +24,8 @@ span {
 	font-weight: 700;
 }
 .social {
-	flex: 0 0 20%;
+	flex: 0 0 10%;
 }
 .message {
-	flex: 1 0 80%;
+	flex: 1 0 90%;
 }
