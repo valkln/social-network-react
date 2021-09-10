@@ -7,7 +7,7 @@ export default function Post(props) {
 			<div className={s.content}>
 				<div className={s.message}>{props.message}</div>
 				<div className={s.social}>
-					<span>like</span>
+					<span>like {props.likesCount}</span>
 					<span>repost</span>
 				</div>
 			</div>

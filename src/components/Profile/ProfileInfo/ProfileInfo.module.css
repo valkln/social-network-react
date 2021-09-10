@@ -1,0 +1,23 @@
+.wallpaper img {
+	width: 100%;
+	height: 250px;
+}
+.user {
+	display: flex;
+	background-color: rgb(155, 154, 89);
+}
+.userinfo {
+	padding: 20px;
+	line-height: 1.3;
+	font-size: 16px;
+}
+.userpic {
+	padding: 10px;
+}
+.userpic img {
+	border-radius: 60px;
+}
+
+.username {
+	font-size: 30px;
+}

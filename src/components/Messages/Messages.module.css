@@ -4,10 +4,8 @@
 	font-size: 16px;
 	color: white;
 }
-
 .dialogues {
 	padding: 10px;
-	height: 100%;
 	background-color: rgb(0, 102, 109);
 }
 .dialogues a {
@@ -16,15 +14,7 @@
 .dialogues .active {
 	color: gold;
 }
-.dialogue {
-}
-
 .messaging {
 	padding: 10px;
 	background-color: rgb(36, 53, 102);
-}
-
-.message {
-}
-.message .active {
 }
