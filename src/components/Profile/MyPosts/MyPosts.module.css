@@ -3,7 +3,7 @@
 	text-transform: uppercase;
 	padding: 20px;
 }
-textarea {
+.post_text {
 	padding: 20px;
 	height: 100px;
 	width: 600px;
@@ -18,7 +18,7 @@ button {
 	box-shadow: 1px 1px 3px #7f8a1c;
 	font-size: 16px;
 }
-p {
+.new {
 	font-size: 20px;
 	margin: 15px 0;
 }

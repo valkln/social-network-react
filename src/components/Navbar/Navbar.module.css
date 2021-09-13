@@ -28,8 +28,35 @@ a.active :hover {
 }
 .item {
 	background-color: #fff;
-	margin: 0 40px 5px 10px;
+	margin: 0 10px 5px 10px;
 	padding: 10px 15px;
 	border-radius: 20px;
 	border: 1px solid #000;
+}
+
+.friends-online {
+}
+.title {
+	font-size: 14px;
+	text-align: center;
+}
+.row {
+	display: flex;
+	justify-content: center;
+}
+.friend {
+	padding: 5px;
+	margin: 0 5px 5px 5px;
+	border-radius: 20px;
+}
+.ava {
+	text-align: center;
+}
+.ava img {
+	width: 40px;
+	border-radius: 50%;
+}
+.name {
+	text-align: center;
+	font-size: 14px;
 }

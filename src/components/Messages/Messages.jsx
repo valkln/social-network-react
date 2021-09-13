@@ -7,7 +7,13 @@ export default function Messages(props) {
 	return (
 		<div className={s.Messages}>
 			<div className={s.dialogues}>{dialoguesElements}</div>
-			<div className={s.messaging}>{messagesElements}</div>
+			<div className={s.messaging}>
+				{messagesElements}
+				<div className={s.myMessage}>
+					<textarea className={s.text} cols="30" rows="10"></textarea>
+					<button className={s.send}>send</button>
+				</div>
+			</div>
 		</div>
 	);
 }
