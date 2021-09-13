@@ -8,6 +8,8 @@ export default function Profile(props) {
 			<MyPosts
 				p={props.state.posts}
 				addPost={props.state.addPost}
+				newPostText={props.state.newPostText}
+				updateNewPostText={props.state.updateNewPostText}
 			/>
 		</div>
 	);

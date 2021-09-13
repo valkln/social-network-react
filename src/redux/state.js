@@ -1,4 +1,4 @@
-import renderAllTree from "../render.js";
+let renderAllTree = () => console.log('state changed');
 let state = {
 	profile: {
 		posts: [
@@ -6,15 +6,21 @@ let state = {
 			{ id: 2, message: "I'm the original Hetman!", likesCount: 0 },
 			{ id: 3, message: "Hi! It's my first post!", likesCount: 4 }
 		],
-		addPost: function (newPostText) {
+		addPost: function () {
 			let newPost = {
 				id: 4,
-				message: newPostText,
+				message: state.profile.newPostText,
 				likesCount: 0
 			}
 			state.profile.posts.push(newPost);
-			renderAllTree({ state });
-		}
+			state.profile.newPostText = '';
+			renderAllTree();
+		},
+		updateNewPostText: function (newText) {
+			state.profile.newPostText = newText;
+			renderAllTree();
+		},
+		newPostText: ''
 	},
 	messages: {
 		dialogues: [
@@ -33,6 +39,23 @@ let state = {
 			{ id: 5, message: 'I hate you' },
 			{ id: 6, message: 'Are your boys ready?' }
 		],
+		addMessage: function () {
+			let newMessage = {
+				id: 7,
+				message: state.messages.newMessageText,
+			}
+			state.messages.messages.push(newMessage);
+			state.messages.newMessageText = '';
+			renderAllTree();
+		},
+		updateNewMessageText: function (newText) {
+			state.messages.newMessageText = newText;
+			renderAllTree();
+		},
+		newMessageText: ''
 	}
+};
+export const subscribe = (observer) => {
+	renderAllTree = observer;
 };
 export default state;
