@@ -7,11 +7,11 @@ export default function Messages(props) {
 	let messagesElements = props.state.messages.map(m => <Message message={m.message} />)
 	let newMessageElement = React.createRef();
 	let addNewMessage = () => {
-		props.state.addMessage();
+		props.addMessage();
 	}
 	let onTextChange = () => {
 		let text = newMessageElement.current.value;
-		props.state.updateNewMessageText(text);
+		props.updateNewMessageText(text);
 	}
 
 	return (

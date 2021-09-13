@@ -18,10 +18,15 @@ function App(props) {
       <div className='app-wrapper-content'>
         <Route path='/profile'>
           <Profile
-            state={props.state.profile} /></Route>
+            state={props.state.profile}
+            addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText} /></Route>
         <Route path='/messages'>
           <Messages
-            state={props.state.messages} />
+            state={props.state.messages}
+            addMessage={props.addMessage}
+            updateNewMessageText={props.updateNewMessageText}
+          />
         </Route>
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />
