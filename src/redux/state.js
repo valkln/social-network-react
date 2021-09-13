@@ -29,39 +29,40 @@ let store = {
 			newMessageText: ''
 		}
 	},
+	_callSubscriber() {
+		console.log('state changed');
+	},
 	getState() {
 		return this._state
-	},
-	_callSubscriber() { console.log('state changed'); },
-	addPost() {
-		let newPost = {
-			id: 4,
-			message: this._state.profile.newPostText,
-			likesCount: 0
-		}
-		this._state.profile.posts.push(newPost);
-		this._state.profile.newPostText = '';
-		this._callSubscriber(this._state);
-	},
-	updateNewPostText(newText) {
-		this._state.profile.newPostText = newText;
-		this._callSubscriber(this._state);
 	},
 	subscribe(observer) {
 		this._callSubscriber = observer;
 	},
-	addMessage() {
-		let newMessage = {
-			id: 7,
-			message: this._state.messages.newMessageText,
+	dispatch(action) {
+		if (action.type === 'ADD-POST') {
+			let newPost = {
+				id: 4,
+				likesCount: 0,
+				message: this._state.profile.newPostText
+			}
+			this._state.profile.posts.push(newPost);
+			this._state.profile.newPostText = '';
+			this._callSubscriber(this._state);
+		} else if (action.type === 'UPDATE-POST-TEXT') {
+			this._state.profile.newPostText = action.newText;
+			this._callSubscriber(this._state);
+		} else if (action.type === 'ADD-MESSAGE') {
+			let newMessage = {
+				id: 7,
+				message: this._state.messages.newMessageText,
+			}
+			this._state.messages.messages.push(newMessage);
+			this._state.messages.newMessageText = '';
+			this._callSubscriber(this._state);
+		} else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+			this._state.messages.newMessageText = action.newText;
+			this._callSubscriber(this._state);
 		}
-		this._state.messages.messages.push(newMessage);
-		this._state.messages.newMessageText = '';
-		this._callSubscriber(this._state);
-	},
-	updateNewMessageText(newText) {
-		this._state.messages.newMessageText = newText;
-		this._callSubscriber(this._state);
 	}
 }
 

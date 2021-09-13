@@ -19,15 +19,13 @@ function App(props) {
         <Route path='/profile'>
           <Profile
             state={props.state.profile}
-            addPost={props.addPost}
-            updateNewPostText={props.updateNewPostText} /></Route>
+            dispatch={props.dispatch}
+          /></Route>
         <Route path='/messages'>
           <Messages
             state={props.state.messages}
-            addMessage={props.addMessage}
-            updateNewMessageText={props.updateNewMessageText}
-          />
-        </Route>
+            dispatch={props.dispatch}
+          /></Route>
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />
         <Route path='/settings' component={Settings} />

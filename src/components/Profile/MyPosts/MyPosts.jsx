@@ -4,11 +4,11 @@ import Post from './Post/Post';
 export default function MyPosts(props) {
 	let newPostElement = React.createRef();
 	let addNewPost = () => {
-		props.addPost();
+		props.dispatch({ type: 'ADD-POST' });
 	}
 	let onTextChange = () => {
 		let text = newPostElement.current.value;
-		props.updateNewPostText(text);
+		props.dispatch({ type: 'UPDATE-POST-TEXT', newText: text });
 	}
 	let postsElements = props.p.map(p => <Post message={p.message} likesCount={p.likesCount} />)
 	return (
