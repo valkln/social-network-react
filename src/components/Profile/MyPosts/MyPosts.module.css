@@ -10,15 +10,15 @@
 	box-shadow: 1px 1px 10px black;
 	border-radius: 30px;
 }
-button {
+.new {
+	font-size: 20px;
+	margin: 15px 0;
+}
+.send {
 	background-color: #b2c227;
 	padding: 5px 10px;
 	margin: 10px 20px;
 	border-radius: 10px;
 	box-shadow: 1px 1px 3px #7f8a1c;
 	font-size: 16px;
-}
-.new {
-	font-size: 20px;
-	margin: 15px 0;
 }

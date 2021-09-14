@@ -30,7 +30,10 @@
 	border-radius: 30px;
 }
 .send {
-	height: 50px;
 	color: white;
 	background-color: #4b60a0;
+	padding: 10px 15px;
+	margin: 10px 20px;
+	border-radius: 10px;
+	font-size: 18px;
 }
