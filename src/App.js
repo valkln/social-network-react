@@ -16,10 +16,8 @@ function App(props) {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/profile'>
-          <Profile store={props.store} /></Route>
-        <Route path='/messages'>
-          <MessagesContainer store={props.store} /></Route>
+        <Route path='/profile'> <Profile /></Route>
+        <Route path='/messages'><MessagesContainer /></Route>
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />
         <Route path='/settings' component={Settings} />
