@@ -7,5 +7,6 @@ let reducers = combineReducers({
 	messages: messagesReducer
 });
 let store = createStore(reducers);
+window.store = store
 
 export default store;

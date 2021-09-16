@@ -11,7 +11,7 @@ export default function MyPosts(props) {
 		let text = event.target.value;
 		props.updatePostText(text);
 	}
-	let postsElements = props.p.map(p => <Post message={p.message} likesCount={p.likesCount} />)
+	let postsElements = props.p.map(p => <Post message={p.message} likesCount={p.likesCount} key={p.id} />)
 	return (
 		<div className={s.MyPosts}>
 			<h3>posts</h3>

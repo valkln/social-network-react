@@ -4,8 +4,8 @@ import Message from './Message/Message';
 import Dialogue from './Dialogue/Dialogue';
 
 export default function Messages(props) {
-	let dialoguesElements = props.dialogues.map(d => <Dialogue name={d.name} id={d.id} />);
-	let messagesElements = props.messages.map(m => <Message message={m.message} />)
+	let dialoguesElements = props.dialogues.map(d => <Dialogue name={d.name} id={d.id} key={d.id} />);
+	let messagesElements = props.messages.map(m => <Message message={m.message} key={m.id} />)
 	let newMessageElement = React.createRef();
 	let addNewMessage = () => {
 		props.addMessage();
@@ -21,7 +21,7 @@ export default function Messages(props) {
 			<div className={s.messaging}>
 				{messagesElements}
 				<div className={s.myMessage}>
-					<textarea placeholder='Enter your message' className={s.text} ref={newMessageElement} onChange={onTextChange} value={props.newMessageText} ></textarea>
+					<textarea placeholder='Enter your message' className={s.text} ref={newMessageElement} onChange={onTextChange} value={props.newMessageText} />
 					<button className={s.send} onClick={addNewMessage}>send</button>
 				</div>
 			</div>
