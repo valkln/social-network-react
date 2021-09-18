@@ -14,7 +14,7 @@
 	color: gold;
 }
 .messaging {
-	padding: 10px;
+	padding: 0 10px;
 	background-color: rgb(36, 53, 102);
 }
 .myMessage {
@@ -28,6 +28,7 @@
 	width: 600px;
 	box-shadow: 1px 1px 10px black;
 	border-radius: 30px;
+	margin: 10px;
 }
 .send {
 	color: white;

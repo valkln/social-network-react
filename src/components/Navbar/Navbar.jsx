@@ -7,7 +7,7 @@ export default function Navbar() {
 			<ul>
 				<NavLink to='/profile' activeClassName={s.active} className={s.link}><li className={s.item}>Profile</li></NavLink>
 				<NavLink to='/messages' activeClassName={s.active} className={s.link}><li className={s.item}>Messages</li></NavLink>
-				<NavLink to='/friends' activeClassName={s.active} className={s.link}><li className={s.item}>Friends</li></NavLink>
+				<NavLink to='/users' activeClassName={s.active} className={s.link}><li className={s.item}>Find Users</li></NavLink>
 				<div className={s.friends_online}>
 					<p className={s.title}>online: 3</p>
 					<div className={s.row}>
@@ -25,8 +25,6 @@ export default function Navbar() {
 						</div>
 					</div>
 				</div>
-				<NavLink to='/news' activeClassName={s.active} className={s.link}><li className={s.item}>News</li></NavLink>
-				<NavLink to='/music' activeClassName={s.active} className={s.link}><li className={s.item}>Music</li></NavLink>
 				<NavLink to='/settings' activeClassName={s.active} className={s.link}><li className={s.item}>Settings</li></NavLink>
 			</ul>
 		</nav>
