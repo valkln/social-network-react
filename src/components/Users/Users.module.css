@@ -7,3 +7,6 @@
 	font-size: 20px;
 	padding: 10px;
 }
+.selected {
+	color: brown;
+}
