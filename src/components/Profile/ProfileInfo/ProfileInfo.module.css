@@ -16,8 +16,9 @@
 }
 .userpic img {
 	border-radius: 60px;
+	width: 300px;
 }
 
-.username {
+.fullName {
 	font-size: 30px;
 }
