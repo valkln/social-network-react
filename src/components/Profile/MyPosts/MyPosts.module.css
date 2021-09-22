@@ -1,4 +1,5 @@
 .MyPosts {
+	color: white;
 	font-size: 30px;
 	text-transform: uppercase;
 	padding: 20px;
@@ -15,10 +16,11 @@
 	margin: 15px 0;
 }
 .send {
-	background-color: #b2c227;
+	color: white;
+	background-color: #2ad4e0;
 	padding: 5px 10px;
 	margin: 10px 20px;
 	border-radius: 10px;
-	box-shadow: 1px 1px 3px #7f8a1c;
+	box-shadow: 1px 1px 3px #2ad4e0;
 	font-size: 16px;
 }

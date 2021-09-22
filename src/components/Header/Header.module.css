@@ -2,6 +2,7 @@
 	grid-area: h;
 	background-color: rgb(230, 230, 230);
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 }
 .header img {
@@ -11,6 +12,16 @@
 
 .title {
 	font-size: 40px;
+	color: #0976bb;
+	text-shadow: 0px 2px 3px #0976bb;
+}
+.logoblock {
+	display: flex;
+	align-items: center;
+}
+.authblock a {
+	padding: 10px;
+	font-size: 28px;
 	color: #0976bb;
 	text-shadow: 0px 2px 3px #0976bb;
 }
