@@ -1,6 +1,6 @@
 import s from './ProfileInfo.module.css'
 import defUserPic from '../../../img/ava.png'
-export default function ProfileInfo(props) {
+const ProfileInfo = (props) => {
 	return (
 		<div className={s.profile}>
 			<div className={s.user}>
@@ -14,3 +14,4 @@ export default function ProfileInfo(props) {
 		</div>
 	);
 }
+export default ProfileInfo;

@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
-import { addMessageActionCreator, updateMessageTextActionCreator } from '../../redux/messages-reducer.js'
+import { addMessageAC, updateMessageTextAC } from '../../redux/messages-reducer.js'
 import Messages from './Messages';
-let mapStateToProps = (state) => {
+let msp = (state) => {
 	return {
 		messages: state.messages.messages,
 		dialogues: state.messages.dialogues,
 		newMessageText: state.messages.newMessageText
 	}
 };
-let mapDispatchToProps = (dispatch) => {
+let mdp = (dispatch) => {
 	return {
 		updateNewMessageText: (text) => {
-			let action = updateMessageTextActionCreator(text)
+			let action = updateMessageTextAC(text)
 			dispatch(action)
 		},
-		addMessage: () => { dispatch(addMessageActionCreator()) }
+		addMessage: () => { dispatch(addMessageAC()) }
 	}
 };
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
+const MessagesContainer = connect(msp, mdp)(Messages);
 export default MessagesContainer

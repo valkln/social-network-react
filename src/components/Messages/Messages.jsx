@@ -3,7 +3,7 @@ import s from './Messages.module.css';
 import Message from './Message/Message';
 import Dialogue from './Dialogue/Dialogue';
 
-export default function Messages(props) {
+const Messages = (props) => {
 	let dialoguesElements = props.dialogues.map(d => <Dialogue name={d.name} id={d.id} key={d.id} />);
 	let messagesElements = props.messages.map(m => <Message message={m.message} key={m.id} />)
 	let newMessageElement = React.createRef();
@@ -28,3 +28,4 @@ export default function Messages(props) {
 		</div>
 	);
 }
+export default Messages;

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 
-export default function MyPosts(props) {
+const MyPosts = (props) => {
 	debugger
 	let newPostElement = React.createRef();
 	let addNewPost = () => {
@@ -24,3 +24,4 @@ export default function MyPosts(props) {
 		</ div>
 	);
 }
+export default MyPosts;

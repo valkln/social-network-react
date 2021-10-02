@@ -1,6 +1,6 @@
 import s from './Post.module.css'
 import defUserPic from '../../../../img/ava.png'
-export default function Post(props) {
+const Post = (props) => {
 	return (
 		<div className={s.Post} >
 			<img className={s.ava} src={props.userpic !== null ? props.userpic : defUserPic} alt='userpic'></img>
@@ -14,3 +14,5 @@ export default function Post(props) {
 		</ div>
 	);
 }
+
+export default Post;

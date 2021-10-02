@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import s from './Navbar.module.css'
 import ava from '../../img/ava.png'
-export default function Navbar() {
+const Navbar = () => {
 	return (
 		<nav className={s.nav}>
 			<ul>
@@ -30,3 +30,5 @@ export default function Navbar() {
 		</nav>
 	);
 }
+
+export default Navbar;
