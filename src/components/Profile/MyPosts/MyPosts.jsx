@@ -3,6 +3,7 @@ import s from './MyPosts.module.css'
 import Post from './Post/Post';
 
 export default function MyPosts(props) {
+	debugger
 	let newPostElement = React.createRef();
 	let addNewPost = () => {
 		props.addPost();
@@ -11,7 +12,7 @@ export default function MyPosts(props) {
 		let text = event.target.value;
 		props.updatePostText(text);
 	}
-	let postsElements = props.p.map(p => <Post message={p.message} likesCount={p.likesCount} key={p.id} />)
+	let postsElements = props.p.map(p => <Post userpic={props.profile.photos.small} message={p.message} likesCount={p.likesCount} key={p.id} />)
 	return (
 		<div className={s.MyPosts}>
 			<h3>posts</h3>

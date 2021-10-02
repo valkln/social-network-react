@@ -9,7 +9,7 @@ export default function Profile(props) {
 	else return (
 		<div className={s.profile}>
 			<ProfileInfo profile={props.profile} />
-			<MyPostsContainer />
+			<MyPostsContainer profile={props.profile} />
 		</div>
 	);
 }

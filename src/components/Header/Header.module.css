@@ -19,9 +19,12 @@
 	display: flex;
 	align-items: center;
 }
-.authblock a {
+.authblock {
 	padding: 10px;
 	font-size: 28px;
 	color: #0976bb;
 	text-shadow: 0px 2px 3px #0976bb;
+}
+.authblock a {
+	color: #0976bb;
 }

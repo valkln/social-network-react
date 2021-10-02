@@ -22,5 +22,6 @@ class HeaderContainer extends React.Component {
 const msp = (state) => ({
 	isAuth: state.auth.isAuth,
 	login: state.auth.login
+
 });
 export default connect(msp, { setAuthData })(HeaderContainer);

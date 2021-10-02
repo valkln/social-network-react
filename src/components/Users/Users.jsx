@@ -1,5 +1,5 @@
 import s from './Users.module.css'
-import User from './User/User'
+import UserContainer from './User/UserContainer'
 import React from 'react';
 
 let Users = (props) => {
@@ -16,7 +16,7 @@ let Users = (props) => {
 		</div>
 		<h3 className={s.users_title}>Find Users</h3>
 		<div>
-			{props.users.map(u => <User toggleFollow={props.toggleFollow} userpic={u.photos.small} followed={u.followed} name={u.name} id={u.id} key={u.id} />)}
+			{props.users.map(u => <UserContainer toggleFollow={props.toggleFollow} userpic={u.photos.small} followed={u.followed} name={u.name} id={u.id} key={u.id} />)}
 		</div>
 	</div >
 }

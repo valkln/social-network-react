@@ -4,9 +4,9 @@ const SET_USER_PROFILE = 'SET-USER-PROFILE;'
 let initialState = {
 	profile: null,
 	posts: [
-		{ id: 1, message: "Buy some chocolate, mate.", likesCount: 12 },
-		{ id: 2, message: "I'm the original Hetman!", likesCount: 0 },
-		{ id: 3, message: "Hi! It's my first post!", likesCount: 4 }
+		{ id: 1, message: "Post 1", likesCount: 12 },
+		{ id: 2, message: "Post 2", likesCount: 0 },
+		{ id: 3, message: "Post 3", likesCount: 4 }
 	],
 	newPostText: ''
 }
