@@ -21,23 +21,24 @@ let Users = (props) => {
 				<div className={s.name}>{u.name}</div>
 				<NavLink to={'/profile/' + u.id}> <div className={s.userpic}> <img src={u.photos.small !== null ? u.photos.small : defUserPic} alt='userpic' /> </div> </NavLink>
 				{u.followed ?
-					<button disabled={u.followingInProgress} className={s.button} onClick={() => {
-						props.toggleIsFollowingInProgress(true)
+					<button disabled={props.followingInProgress.some(id => id == u.id)} className={s.button} onClick={() => {
+						props.toggleIsFollowingInProgress(true, u.id)
 						followDelete(u.id).then(response => {
 							if (response.resultCode == 0) {
 								props.toggleFollow(u.id, u.followed)
 							}
-							props.toggleIsFollowingInProgress(false)
+
+							props.toggleIsFollowingInProgress(false, u.id)
 						})
 					}}>Unfollow</button>
 					:
-					<button disabled={props.followingInProgress} className={s.button} onClick={() => {
-						props.toggleIsFollowingInProgress(true)
+					<button disabled={props.followingInProgress.some(id => id == u.id)} className={s.button} onClick={() => {
+						props.toggleIsFollowingInProgress(true, u.id)
 						followPost(u.id).then(response => {
 							if (response.resultCode === 0) {
 								props.toggleFollow(u.id, u.followed)
 							}
-							props.toggleIsFollowingInProgress(false)
+							props.toggleIsFollowingInProgress(false, u.id)
 						})
 					}}>Follow</button>
 				}

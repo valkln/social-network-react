@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
 	baseURL: `https://social-network.samuraijs.com/api/1.0/`,
 	withCredentials: true,
-	headers: { 'API-KEY': 'e9d7dfcc-5205-40b8-9d1c-01d107f0f4b1' }
+	headers: { 'API-KEY': 'bf564537-ae0f-475b-a4ab-53d32391d136' }
 })
 export const getUsers = (currentPage, pageSize) => {
 	return instance.get(`users?page=${currentPage}&count=${pageSize}`)
