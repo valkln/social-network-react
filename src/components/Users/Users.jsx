@@ -1,7 +1,8 @@
 import s from './Users.module.css'
-import UserContainer from './User/UserContainer'
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
+import defUserPic from '../../img/ava.png';
+import { followDelete, followPost } from '../../API/api';
 let Users = (props) => {
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 	let pages = []
@@ -11,12 +12,37 @@ let Users = (props) => {
 	return <div className={s.users} >
 		<div>
 			{pages.map(p => {
-				return <span onClick={() => props.onPageChanged(p)} className={props.currentPage == p && s.selected}>{p}</span>
+				return <span onClick={() => props.onPageChanged(p)} className={props.currentPage === p && s.selected}>{p}</span>
 			})}
 		</div>
 		<h3 className={s.users_title}>Find Users</h3>
 		<div>
-			{props.users.map(u => <UserContainer toggleFollow={props.toggleFollow} userpic={u.photos.small} followed={u.followed} name={u.name} id={u.id} key={u.id} />)}
+			{props.users.map(u => <div className={s.user}>
+				<div className={s.name}>{u.name}</div>
+				<NavLink to={'/profile/' + u.id}> <div className={s.userpic}> <img src={u.photos.small !== null ? u.photos.small : defUserPic} alt='userpic' /> </div> </NavLink>
+				{u.followed ?
+					<button disabled={u.followingInProgress} className={s.button} onClick={() => {
+						props.toggleIsFollowingInProgress(true)
+						followDelete(u.id).then(response => {
+							if (response.resultCode == 0) {
+								props.toggleFollow(u.id, u.followed)
+							}
+							props.toggleIsFollowingInProgress(false)
+						})
+					}}>Unfollow</button>
+					:
+					<button disabled={props.followingInProgress} className={s.button} onClick={() => {
+						props.toggleIsFollowingInProgress(true)
+						followPost(u.id).then(response => {
+							if (response.resultCode === 0) {
+								props.toggleFollow(u.id, u.followed)
+							}
+							props.toggleIsFollowingInProgress(false)
+						})
+					}}>Follow</button>
+				}
+			</div>
+			)}
 		</div>
 	</div >
 }

@@ -11,3 +11,42 @@
 .selected {
 	color: brown;
 }
+
+.user {
+	background-color: #0096a1;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 10px;
+	margin: 10px;
+}
+.name {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.location {
+	margin-bottom: 10px;
+}
+.profession {
+	margin-bottom: 10px;
+}
+.button {
+	background-color: #2ad4e0;
+	padding: 5px 10px;
+	color: white;
+	border-radius: 15px;
+	font-size: 18px;
+	box-shadow: 1px 1px 2px #2ad4e0;
+}
+.userpic img {
+	width: 100px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+.button :disabled {
+	background-color: #b0dde0;
+	padding: 5px 10px;
+	color: white;
+	border-radius: 15px;
+	font-size: 18px;
+	box-shadow: 1px 1px 2px #b0dde0;
+}
