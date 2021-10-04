@@ -2,7 +2,6 @@ import s from './Users.module.css'
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import defUserPic from '../../img/ava.png';
-import { followDelete, followPost } from '../../API/api';
 let Users = (props) => {
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 	let pages = []
@@ -21,26 +20,15 @@ let Users = (props) => {
 				<div className={s.name}>{u.name}</div>
 				<NavLink to={'/profile/' + u.id}> <div className={s.userpic}> <img src={u.photos.small !== null ? u.photos.small : defUserPic} alt='userpic' /> </div> </NavLink>
 				{u.followed ?
-					<button disabled={props.followingInProgress.some(id => id == u.id)} className={s.button} onClick={() => {
-						props.toggleIsFollowingInProgress(true, u.id)
-						followDelete(u.id).then(response => {
-							if (response.resultCode == 0) {
-								props.toggleFollow(u.id, u.followed)
-							}
-
-							props.toggleIsFollowingInProgress(false, u.id)
-						})
-					}}>Unfollow</button>
+					<button
+						disabled={props.followingInProgress.some(id => id === u.id)}
+						className={s.button}
+						onClick={() => { props.followDelete(u.id, u.followed) }}>Unfollow</button>
 					:
-					<button disabled={props.followingInProgress.some(id => id == u.id)} className={s.button} onClick={() => {
-						props.toggleIsFollowingInProgress(true, u.id)
-						followPost(u.id).then(response => {
-							if (response.resultCode === 0) {
-								props.toggleFollow(u.id, u.followed)
-							}
-							props.toggleIsFollowingInProgress(false, u.id)
-						})
-					}}>Follow</button>
+					<button
+						disabled={props.followingInProgress.some(id => id === u.id)}
+						className={s.button}
+						onClick={() => { props.followPost(u.id, u.followed) }}>Follow</button>
 				}
 			</div>
 			)}
