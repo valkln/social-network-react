@@ -8,6 +8,7 @@ import MessagesContainer from './components/Messages/MessagesContainer';
 import UsersContainer from './components/Users/UsersContainer';
 
 import Settings from './components/Settings/Settings';
+import Login from './components/Login/Login';
 
 function App(props) {
   return (
@@ -19,6 +20,7 @@ function App(props) {
         <Route path='/messages'><MessagesContainer /></Route>
         <Route path='/users'> <UsersContainer /> </Route>
         <Route path='/settings' component={Settings} />
+        <Route path='/login'> <Login /> </Route>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import {
 	setUsers, toggleFollow, setCurrentPage, setUsersTotalCount, toggleIsFetching,
 	getUsers, followPost, followDelete
 } from '../../redux/users-reducer';
+import { Redirect } from 'react-router';
 import React from 'react';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
@@ -16,7 +17,10 @@ class UsersContainer extends React.Component {
 	}
 
 	render() {
-		return <>
+		if (!this.props.isAuth) {
+			return <Redirect to={'/login'} />
+		}
+		else return <>
 			{this.props.isFetching ? <Preloader /> : null
 			}
 			<Users
@@ -41,7 +45,8 @@ let msp = (state) => {
 		totalUsersCount: state.users.totalUsersCount,
 		currentPage: state.users.currentPage,
 		isFetching: state.users.isFetching,
-		followingInProgress: state.users.followingInProgress
+		followingInProgress: state.users.followingInProgress,
+		isAuth: state.auth.isAuth
 	}
 };
 

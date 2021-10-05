@@ -5,7 +5,8 @@ let msp = (state) => {
 	return {
 		messages: state.messages.messages,
 		dialogues: state.messages.dialogues,
-		newMessageText: state.messages.newMessageText
+		newMessageText: state.messages.newMessageText,
+		isAuth: state.auth.isAuth
 	}
 };
 let mdp = (dispatch) => {
