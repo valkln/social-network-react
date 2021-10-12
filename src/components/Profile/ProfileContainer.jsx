@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component {
 		this.props.getProfile(userId)
 	}
 	render() {
-		if (this.props.isAuth == false) {
+		if (this.props.isAuth === false) {
 			return <Redirect to={'/login'} />
 		}
 		else return <div>

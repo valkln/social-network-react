@@ -40,8 +40,8 @@ export const updatePostTextAC = (text) =>
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
 export const getProfile = (id) => (dispatch) => {
-	profileAPI.getProfile(id).
-		then(response => {
+	profileAPI.getProfile(id)
+		.then(response => {
 			dispatch(setUserProfile(response))
 		});
 }

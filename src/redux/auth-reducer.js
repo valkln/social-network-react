@@ -1,4 +1,4 @@
-import { authAPI, headerAPI } from "../API/api";
+import { authAPI } from "../API/api";
 
 const SET_AUTH_DATA = 'SET-AUTH-DATA';
 let initialState = {
