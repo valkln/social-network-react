@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import {
-	setUsers, toggleFollow, setCurrentPage, setUsersTotalCount, toggleIsFetching,
-	getUsers, followPost, followDelete
+	setCurrentPage, toggleIsFetching,
+	getUsers, followDelete, followPost
 } from '../../redux/users-reducer';
-import { Redirect } from 'react-router';
 import React from 'react';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
+import AuthRedirect from '../../hoc/AuthRedirect';
+import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
 	componentDidMount() {
@@ -15,12 +16,8 @@ class UsersContainer extends React.Component {
 	onPageChanged = (pageNumber) => {
 		this.props.getUsers(pageNumber, this.props.pageSize);
 	}
-
 	render() {
-		if (!this.props.isAuth) {
-			return <Redirect to={'/login'} />
-		}
-		else return <>
+		return <>
 			{this.props.isFetching ? <Preloader /> : null
 			}
 			<Users
@@ -45,18 +42,17 @@ let msp = (state) => {
 		totalUsersCount: state.users.totalUsersCount,
 		currentPage: state.users.currentPage,
 		isFetching: state.users.isFetching,
-		followingInProgress: state.users.followingInProgress,
-		isAuth: state.auth.isAuth
+		followingInProgress: state.users.followingInProgress
 	}
 };
 
-export default connect(msp, {
-	toggleFollow,
-	setUsers,
-	setCurrentPage,
-	setUsersTotalCount,
-	toggleIsFetching,
-	getUsers,
-	followDelete,
-	followPost
-})(UsersContainer)
+export default compose(
+	connect(msp, {
+		setCurrentPage,
+		toggleIsFetching,
+		getUsers,
+		followPost,
+		followDelete
+	}),
+	AuthRedirect
+)(UsersContainer)

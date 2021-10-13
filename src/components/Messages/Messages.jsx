@@ -15,10 +15,7 @@ const Messages = (props) => {
 		let text = event.target.value;
 		props.updateNewMessageText(text);
 	}
-	if (props.isAuth === false) {
-		return <Redirect to={'/login'} />
-	}
-	else return (
+	return (
 		<div className={s.Messages}>
 			<div className={s.dialogues}>{dialoguesElements}</div>
 			<div className={s.messaging}>

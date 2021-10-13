@@ -42,19 +42,3 @@ a.active :hover {
 	display: flex;
 	justify-content: center;
 }
-.friend {
-	padding: 5px;
-	margin: 0 5px 5px 5px;
-	border-radius: 20px;
-}
-.ava {
-	text-align: center;
-}
-.ava img {
-	width: 40px;
-	border-radius: 50%;
-}
-.name {
-	text-align: center;
-	font-size: 14px;
-}
