@@ -26,6 +26,7 @@ export const usersAPI = {
 			})
 	}
 }
+
 export const authAPI = {
 	getAuth() {
 		return instance.get(`auth/me/`)
@@ -38,6 +39,18 @@ export const authAPI = {
 export const profileAPI = {
 	getProfile(id) {
 		return instance.get(`profile/${id}`)
+			.then(response => {
+				return response.data;
+			});
+	},
+	getStatus(id) {
+		return instance.get(`profile/status/${id}`)
+			.then(response => {
+				return response.data;
+			});
+	},
+	updateStatus(data) {
+		return instance.put(`profile/status`, { status: data })
 			.then(response => {
 				return response.data;
 			});
