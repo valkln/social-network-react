@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Messages.module.css';
 import Message from './Message/Message';
 import Dialogue from './Dialogue/Dialogue';
-import { Redirect } from 'react-router';
 
 const Messages = (props) => {
 	let dialoguesElements = props.dialogues.map(d => <Dialogue name={d.name} id={d.id} key={d.id} />);
