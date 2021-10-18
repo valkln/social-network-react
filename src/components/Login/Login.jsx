@@ -1,6 +1,6 @@
 import s from './Login.module.css'
 import { Field, reduxForm } from 'redux-form'
-const Login = (props) => {
+const Login = () => {
 	const onSubmit = (formData) => {
 		console.log({ formData })
 	}

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Profile from "./Profile";
 import { getProfile, getStatus, updateStatus } from "../../redux/profile-reducer";
 import { withRouter } from "react-router";
-import AuthRedirect from "../../hoc/AuthRedirect";
 import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
@@ -29,6 +28,5 @@ let msp = (state) => ({
 export default
 	compose(
 		connect(msp, { getProfile, getStatus, updateStatus }),
-		withRouter,
-		AuthRedirect
+		withRouter
 	)(ProfileContainer);

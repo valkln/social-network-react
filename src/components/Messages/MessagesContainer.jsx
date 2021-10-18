@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import AuthRedirect from '../../hoc/AuthRedirect.js';
-import { addMessageAC, updateMessageTextAC } from '../../redux/messages-reducer.js'
+import { addMessageAC } from '../../redux/messages-reducer.js'
 import Messages from './Messages';
 let msp = (state) => {
 	return {
@@ -12,11 +12,7 @@ let msp = (state) => {
 };
 let mdp = (dispatch) => {
 	return {
-		updateNewMessageText: (text) => {
-			let action = updateMessageTextAC(text)
-			dispatch(action)
-		},
-		addMessage: () => { dispatch(addMessageAC()) }
+		addMessage: (data) => { dispatch(addMessageAC(data)) }
 	}
 };
 
