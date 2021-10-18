@@ -4,3 +4,17 @@
 	text-align: center;
 	padding-top: 30px;
 }
+.form {
+	width: 80%;
+	margin: 0 auto;
+}
+.field {
+	margin: 10px 0;
+}
+.btn {
+	padding: 5px 10px;
+}
+.input {
+	padding: 5px 10px;
+	border-radius: 10px;
+}
