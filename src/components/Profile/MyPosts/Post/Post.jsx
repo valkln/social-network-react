@@ -7,8 +7,8 @@ const Post = (props) => {
 			<div className={s.content}>
 				<div className={s.message}>{props.message}</div>
 				<div className={s.social}>
-					<span>like {props.likesCount}</span>
-					<span>repost</span>
+					<span className={s.span}>like {props.likesCount}</span>
+					<span className={s.span}>repost</span>
 				</div>
 			</div>
 		</ div>

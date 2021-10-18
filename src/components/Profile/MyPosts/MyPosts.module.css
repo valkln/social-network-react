@@ -24,3 +24,7 @@
 	box-shadow: 1px 1px 3px #2ad4e0;
 	font-size: 16px;
 }
+.posts {
+	display: flex;
+	flex-direction: column-reverse;
+}
