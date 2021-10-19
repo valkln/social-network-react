@@ -18,3 +18,10 @@
 	padding: 5px 10px;
 	border-radius: 10px;
 }
+.summary_error {
+	border: 1px solid red;
+	padding: 10px;
+	color: red;
+	background-color: #fff;
+	border-radius: 10px;
+}

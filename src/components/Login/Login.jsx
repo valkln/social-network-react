@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 const Login = (props) => {
 	const onSubmit = (data) => {
-		props.login(data.login, data.password, data.rememberMe)
+		props.login(data.email, data.password, data.rememberMe)
 		console.log({ data })
 	}
 	if (props.isAuth) {
@@ -22,9 +22,9 @@ const LoginForm = (props) => {
 		<div className={s.field}>
 			<Field
 				className={s.input}
-				name='login'
+				name='email'
 				component={Input}
-				placeholder={'login'}
+				placeholder={'email'}
 				validate={[required]} />
 		</div>
 		<div className={s.field}>
@@ -39,6 +39,7 @@ const LoginForm = (props) => {
 		<div className={s.field}>
 			< Field name='rememberMe' component={Input} type={"checkbox"} /> remember me
 		</div>
+		{props.error && <div className={s.summary_error}>{props.error}</div>}
 		<div className={s.field}>
 			<button className={s.btn}>Log in</button>
 		</div>
