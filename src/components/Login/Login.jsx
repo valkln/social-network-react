@@ -2,11 +2,17 @@ import s from './Login.module.css'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../common/FormControls/FormControls'
 import { required } from '../../util/validation/validation'
-const Login = () => {
-	const onSubmit = (formData) => {
-		console.log({ formData })
+import { login } from '../../redux/auth-reducer'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
+const Login = (props) => {
+	const onSubmit = (data) => {
+		props.login(data.login, data.password, data.rememberMe)
+		console.log({ data })
 	}
-	return <div>
+	if (props.isAuth) {
+		return <Redirect to={'/profile'} />
+	} else return <div>
 		<h1 className={s.header}>Login</h1>
 		<ReduxLoginForm onSubmit={onSubmit} />
 	</div>
@@ -23,6 +29,7 @@ const LoginForm = (props) => {
 		</div>
 		<div className={s.field}>
 			< Field
+				type='password'
 				className={s.input}
 				name='password'
 				component={Input}
@@ -37,5 +44,8 @@ const LoginForm = (props) => {
 		</div>
 	</form>
 }
-const ReduxLoginForm = reduxForm({ form: 'login' })(LoginForm)
-export default Login;
+const ReduxLoginForm = reduxForm({ form: 'login' })(LoginForm);
+const msp = (state) => ({
+	isAuth: state.auth.isAuth
+})
+export default connect(msp, { login })(Login);
