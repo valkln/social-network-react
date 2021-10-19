@@ -9,7 +9,12 @@ import AuthRedirect from "../../hoc/AuthRedirect";
 class ProfileContainer extends React.Component {
 	componentDidMount() {
 		let userId = this.props.match.params.userId;
-		if (!userId) { userId = this.props.user };
+		if (!userId) {
+			userId = this.props.user;
+			if (!userId) {
+				this.props.history.push('/login');
+			}
+		};
 		this.props.getProfile(userId);
 		this.props.getStatus(userId);
 	}
@@ -33,6 +38,5 @@ let msp = (state) => ({
 export default
 	compose(
 		connect(msp, { getProfile, getStatus, updateStatus }),
-		AuthRedirect,
 		withRouter
 	)(ProfileContainer);
