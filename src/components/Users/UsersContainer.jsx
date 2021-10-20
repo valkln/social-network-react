@@ -8,6 +8,7 @@ import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import AuthRedirect from '../../hoc/AuthRedirect';
 import { compose } from 'redux';
+import { getCurrentPage, getFollowingProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsersInfo } from '../../redux/users-selectors';
 
 class UsersContainer extends React.Component {
 	componentDidMount() {
@@ -37,12 +38,12 @@ class UsersContainer extends React.Component {
 
 let msp = (state) => {
 	return {
-		users: state.users.users,
-		pageSize: state.users.pageSize,
-		totalUsersCount: state.users.totalUsersCount,
-		currentPage: state.users.currentPage,
-		isFetching: state.users.isFetching,
-		followingInProgress: state.users.followingInProgress
+		users: getUsersInfo(state),
+		pageSize: getPageSize(state),
+		totalUsersCount: getTotalUsersCount(state),
+		currentPage: getCurrentPage(state),
+		isFetching: getIsFetching(state),
+		followingInProgress: getFollowingProgress(state)
 	}
 };
 
