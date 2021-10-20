@@ -11,6 +11,7 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_AUTH_DATA:
+			debugger
 			return {
 				...state,
 				...action.data
@@ -21,7 +22,7 @@ const authReducer = (state = initialState, action) => {
 export const setAuthData = (userId, email, login, isAuth) => ({ type: SET_AUTH_DATA, data: { userId, email, login, isAuth } })
 
 export const getAuth = () => (dispatch) => {
-	authAPI.getAuth()
+	return authAPI.getAuth()
 		.then(response => {
 			if (response.resultCode === 0) {
 				let { id, email, login } = response.data;

@@ -17,10 +17,10 @@ export const appReducer = (state = initialState, action) => {
 export const setInit = () => ({ type: SET_INIT })
 
 export const getInit = () => (dispatch) => {
-	let promise = dispatch(getAuth);
+	let promise = dispatch(getAuth());
 	Promise.all([promise])
 		.then(() => {
-			dispatch(setInit())
+			dispatch(setInit());
 		})
 }
 
