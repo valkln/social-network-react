@@ -2,7 +2,7 @@ import s from './Users.module.css'
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import defUserPic from '../../img/ava.png';
-let Users = (props) => {
+const Users = (props) => {
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 	let pages = []
 	for (let i = 1; i <= pagesCount; i++) {

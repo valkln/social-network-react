@@ -1,3 +1,4 @@
+import React from 'react';
 import s from './ProfileInfo.module.css'
 import defUserPic from '../../../img/ava.png'
 import ProfileStatus from './ProfileStatus';

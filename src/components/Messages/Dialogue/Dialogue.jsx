@@ -1,3 +1,4 @@
+import React from 'react';
 import s from './Dialogue.module.css';
 import { NavLink } from 'react-router-dom';
 const Dialogue = (props) => {
