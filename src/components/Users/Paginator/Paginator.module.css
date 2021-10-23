@@ -1,0 +1,24 @@
+.paginator {
+	text-align: center;
+}
+.pagenumber {
+	margin: 5px;
+	display: inline-block;
+	padding: 2px 5px;
+	font-size: 16px;
+	cursor: pointer;
+	border: 2px solid white;
+	border-radius: 10px;
+	background-color: #0096a1;
+}
+.selected {
+	color: gold;
+	font-weight: bold;
+}
+.pagibutton {
+	padding: 0 5px;
+	border-radius: 5px;
+	font-size: 16px;
+	color: white;
+	background-color: #0096a1;
+}

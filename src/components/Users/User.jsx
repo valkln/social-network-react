@@ -9,12 +9,12 @@ const User = ({ user, ...props }) => {
 		{props.followed ?
 			<button
 				disabled={props.followingInProgress.some(id => id === user.id)}
-				className={s.button}
+				className={s.follow}
 				onClick={() => { props.followDelete(props.id, props.followed) }}>Unfollow</button>
 			:
 			<button
 				disabled={props.followingInProgress.some(id => id === user.id)}
-				className={s.button}
+				className={s.follow}
 				onClick={() => { props.followPost(props.id, props.followed) }}>Follow</button>
 		}
 	</div>

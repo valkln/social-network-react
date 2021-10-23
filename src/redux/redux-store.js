@@ -5,8 +5,10 @@ import usersReducer from "./users-reducer";
 import appReducer from "./app-reducer";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from 'redux-form'
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
-const { createStore, combineReducers, applyMiddleware } = require("redux");
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 let reducers = combineReducers({
 	profile: profileReducer,
 	messages: messagesReducer,
@@ -15,7 +17,6 @@ let reducers = combineReducers({
 	app: appReducer,
 	form: formReducer
 });
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
-window.store = store
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
 
 export default store;

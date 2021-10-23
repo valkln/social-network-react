@@ -1,6 +1,6 @@
 import s from './Users.module.css'
 import React from 'react';
-import Paginator from './Paginator';
+import Paginator from './Paginator/Paginator';
 import User from './User';
 const Users = (props) => {
 	return <div className={s.users} >

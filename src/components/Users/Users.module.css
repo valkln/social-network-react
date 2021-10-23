@@ -8,12 +8,6 @@
 	font-size: 20px;
 	padding: 10px;
 }
-.pagenumber {
-	display: inline;
-}
-.selected {
-	color: brown;
-}
 .user {
 	background-color: #0096a1;
 	border-radius: 10px;
@@ -25,13 +19,7 @@
 	font-size: 18px;
 	margin-bottom: 10px;
 }
-.location {
-	margin-bottom: 10px;
-}
-.profession {
-	margin-bottom: 10px;
-}
-.button {
+.follow {
 	background-color: #2ad4e0;
 	padding: 5px 10px;
 	color: white;
@@ -44,7 +32,7 @@
 	border-radius: 10px;
 	margin-bottom: 10px;
 }
-.button[disabled] {
+.follow[disabled] {
 	background-color: #417a7e;
 	padding: 5px 10px;
 	color: white;
