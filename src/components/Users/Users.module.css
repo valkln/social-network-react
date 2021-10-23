@@ -8,6 +8,9 @@
 	font-size: 20px;
 	padding: 10px;
 }
+.pagenumber {
+	display: inline;
+}
 .selected {
 	color: brown;
 }

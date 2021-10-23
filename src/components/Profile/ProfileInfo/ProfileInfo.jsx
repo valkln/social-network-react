@@ -10,11 +10,21 @@ const ProfileInfo = (props) => {
 				<div className={s.userinfo}>
 					<div className={s.fullName}>{props.profile.fullName}</div>
 					<ProfileStatus status={props.status} updateStatus={props.updateStatus} />
-					<div>{props.profile.aboutMe}</div>
-					<div className={s.contacts}></div>
+					<div>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
+					{props.profile.lookingForAJob ?
+						<div>My skills: {props.profile.lookingForAJobDescription} </div>
+						: undefined}
+					<div className={s.contacts}>Contacts:
+						{Object.keys(props.profile.contacts).map(key => {
+							return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
+						})}
+					</div>
 				</div>
 			</div>
 		</div>
 	);
+}
+const Contact = ({ contactTitle, contactValue }) => {
+	return <div className={s.contact}>{contactTitle}: {contactValue}</div>
 }
 export default ProfileInfo;
