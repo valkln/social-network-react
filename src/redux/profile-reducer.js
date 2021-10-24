@@ -21,31 +21,32 @@ const profileReducer = (state = initialState, action) => {
 			}
 		case SET_PROFILE:
 			return {
-				...state,
-				profile: action.profile
+				...state, profile: action.profile
 			}
 		case SET_STATUS:
 			return {
-				...state,
-				status: action.status
+				...state, status: action.status
 			}
+		case 'SET_PHOTOS': {
+			debugger
+			return { ...state, profile: { ...state.profile, photos: action.photos } }
+		}
 		default: return state
 	}
 }
 
 export const addPostAC = (data) => ({ type: ADD_POST, data })
-export const setProfile = (profile) => ({ type: SET_PROFILE, profile })
-export const setStatus = (status) => ({ type: SET_STATUS, status })
+const setProfile = (profile) => ({ type: SET_PROFILE, profile })
+const setStatus = (status) => ({ type: SET_STATUS, status })
+const setPhotos = (photos) => ({ type: 'SET_PHOTOS', photos })
 
 export const getProfile = (id) => async (dispatch) => {
 	let response = await profileAPI.getProfile(id);
 	dispatch(setProfile(response))
-
 }
 export const getStatus = (id) => async (dispatch) => {
 	let response = await profileAPI.getStatus(id);
 	dispatch(setStatus(response))
-
 }
 
 export const updateStatus = (status) => async (dispatch) => {
@@ -53,6 +54,12 @@ export const updateStatus = (status) => async (dispatch) => {
 	if (response.resultCode === 0) {
 		dispatch(setStatus(status))
 	}
+}
 
+export const changePhoto = (photo) => async (dispatch) => {
+	let response = await profileAPI.changePhoto(photo);
+	if (response.resultCode === 0) {
+		dispatch(setPhotos(response.data.photos))
+	}
 }
 export default profileReducer;

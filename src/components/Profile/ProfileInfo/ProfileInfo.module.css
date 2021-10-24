@@ -19,10 +19,30 @@
 }
 .userpic {
 	padding: 10px;
+	position: relative;
 }
 .userpic img {
 	border-radius: 60px;
 	width: 300px;
+}
+.userpic label {
+	position: absolute;
+	top: 50%;
+	left: 30%;
+	background-color: #2ad4e0;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 10px;
+	visibility: hidden;
+	cursor: pointer;
+}
+.userpic:hover label {
+	visibility: visible;
+}
+.userpic input {
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
 }
 
 .fullName {
