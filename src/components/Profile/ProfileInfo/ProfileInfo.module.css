@@ -1,11 +1,4 @@
-.wallpaper img {
-	width: 100%;
-	height: 250px;
-}
-.profile {
-	background-color: #00666d;
-}
-.user {
+.profileInfo {
 	display: flex;
 }
 .userinfo {
@@ -44,7 +37,20 @@
 	visibility: hidden;
 	position: absolute;
 }
-
 .fullName {
 	font-size: 30px;
+}
+.error {
+	border: 1px solid red;
+	padding: 10px;
+	color: red;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+.btn {
+	background-color: #2ad4e0;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 10px;
 }

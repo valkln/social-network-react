@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../API/api";
 
 const ADD_POST = 'ADD-POST';
@@ -28,7 +29,6 @@ const profileReducer = (state = initialState, action) => {
 				...state, status: action.status
 			}
 		case 'SET_PHOTOS': {
-			debugger
 			return { ...state, profile: { ...state.profile, photos: action.photos } }
 		}
 		default: return state
@@ -60,6 +60,16 @@ export const changePhoto = (photo) => async (dispatch) => {
 	let response = await profileAPI.changePhoto(photo);
 	if (response.resultCode === 0) {
 		dispatch(setPhotos(response.data.photos))
+	}
+}
+export const updateProfle = (data) => async (dispatch, getState) => {
+	let id = getState().auth.userId
+	let response = await profileAPI.updateProfle(data);
+	if (response.resultCode === 0) {
+		dispatch(getProfile(id))
+	} else {
+		dispatch(stopSubmit('edit-profile', { _error: response.messages[0] }))
+		return Promise.reject(response.messages[0])
 	}
 }
 export default profileReducer;

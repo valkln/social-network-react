@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Profile from "./Profile";
-import { getProfile, getStatus, updateStatus, changePhoto } from "../../redux/profile-reducer";
+import { getProfile, getStatus, updateStatus, changePhoto, updateProfle } from "../../redux/profile-reducer";
 import { withRouter } from "react-router";
 import { compose } from "redux";
 
@@ -32,7 +32,8 @@ class ProfileContainer extends React.Component {
 				profile={this.props.profile}
 				status={this.props.status}
 				changePhoto={this.props.changePhoto}
-				updateStatus={this.props.updateStatus} />
+				updateStatus={this.props.updateStatus}
+				updateProfle={this.props.updateProfle} />
 		</div>
 	}
 }
@@ -46,6 +47,6 @@ let msp = (state) => ({
 
 export default
 	compose(
-		connect(msp, { getProfile, getStatus, updateStatus, changePhoto }),
+		connect(msp, { getProfile, getStatus, updateStatus, changePhoto, updateProfle }),
 		withRouter
 	)(ProfileContainer);

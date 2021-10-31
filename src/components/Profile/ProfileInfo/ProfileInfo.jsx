@@ -1,38 +1,37 @@
-import React from 'react';
-import s from './ProfileInfo.module.css'
-import defUserPic from '../../../img/ava.png'
+import React, { useState } from 'react';
+import s from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus';
-const ProfileInfo = (props) => {
-
-	debugger
-	const onPhotoSelect = (e) => {
-		if (e.target.files.length) {
-			props.changePhoto(e.target.files[0])
-		}
-	}
+import EditProfile from './EditProfile';
+import Userpic from './Userpic';
+const ProfileInfo = ({ profile, ...props }) => {
+	let [editMode, setEditMode] = useState(false)
 	return (
-		<div className={s.profile}>
-			<div className={s.user}>
-				<div className={s.userpic}><img src={props.profile.photos.large ? props.profile.photos.large : defUserPic} alt='userpic'></img>
-					{props.isOwner ? <> <input onChange={onPhotoSelect} id="input__file" type={"file"} /> <label for="input__file">Change userpic</label> </> : null}
-				</div>
-				<div className={s.userinfo}>
-					<div className={s.fullName}>{props.profile.fullName}</div>
-					<ProfileStatus status={props.status} updateStatus={props.updateStatus} />
-					<div>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
-					{props.profile.lookingForAJob ?
-						<div>My skills: {props.profile.lookingForAJobDescription} </div>
-						: undefined}
-					<div className={s.contacts}>Contacts:
-						{Object.keys(props.profile.contacts).map(key => {
-							return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
-						})}
-					</div>
-				</div>
+		<div className={s.profileInfo}>
+			<Userpic userpic={profile.photos.large} isOwner={props.isOwner} changePhoto={props.changePhoto} />
+			<div className={s.userinfo}>
+				<ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+				{editMode ? <EditProfile setEditMode={setEditMode} updateProfle={props.updateProfle} profile={profile} /> : <UserData setEditMode={setEditMode} isOwner={props.isOwner} profile={profile} />}
 			</div>
-		</div>
+		</div >
 	);
 }
+const UserData = ({ profile, isOwner, setEditMode }) => {
+	return <div className={s.userdata}>
+		<div className={s.fullName}>{profile.fullName}</div>
+		<div>Looking for a job: {profile.lookingForAJob ? 'yes' : 'no'}</div>
+		{profile.lookingForAJob ?
+			<div>My skills: {profile.lookingForAJobDescription} </div>
+			: undefined}
+		{profile.aboutMe ? <div>{profile.aboutMe}</div> : null}
+		<div className={s.contacts}>Contacts:
+			{Object.keys(profile.contacts).map(key => {
+				return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+			})}
+		</div>
+		{isOwner ? <button className={s.btn} onClick={setEditMode}>Edit Profile</button> : undefined}
+	</div>
+}
+
 const Contact = ({ contactTitle, contactValue }) => {
 	return <div className={s.contact}>{contactTitle}: {contactValue}</div>
 }
