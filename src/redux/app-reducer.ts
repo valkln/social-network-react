@@ -1,10 +1,12 @@
 import { getAuth } from "./auth-reducer";
-
+export type initialStateType = {
+	initialized: boolean
+}
 const SET_INIT = 'SET-INIT';
-let initialState = {
+let initialState: initialStateType = {
 	initialized: false
 };
-export const appReducer = (state = initialState, action) => {
+export const appReducer = (state = initialState, action: any): initialStateType => {
 	switch (action.type) {
 		case SET_INIT:
 			return {
@@ -14,9 +16,12 @@ export const appReducer = (state = initialState, action) => {
 		default: return state
 	}
 };
-export const setInit = () => ({ type: SET_INIT })
+type setInitActionType = {
+	type: typeof SET_INIT
+}
+export const setInit = (): setInitActionType => ({ type: SET_INIT })
 
-export const getInit = () => (dispatch) => {
+export const getInit = () => (dispatch: any) => {
 	let promise = dispatch(getAuth());
 	Promise.all([promise])
 		.then(() => {

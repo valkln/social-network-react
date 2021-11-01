@@ -1,5 +1,5 @@
 import MyPosts from './MyPosts'
-import { addPostAC } from '../../../redux/profile-reducer.js'
+import { addPostAC } from '../../../redux/profile-reducer'
 import { connect } from 'react-redux';
 
 let msp = (state) => {

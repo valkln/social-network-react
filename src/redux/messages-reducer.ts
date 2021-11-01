@@ -1,4 +1,12 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
+type dialoguesType = {
+	id: number,
+	name: string
+}
+type messageType = {
+	id: number,
+	message: string
+}
 let initialState = {
 	dialogues: [
 		{ id: 1, name: 'User 1' },
@@ -7,7 +15,7 @@ let initialState = {
 		{ id: 4, name: 'User 4' },
 		{ id: 5, name: 'User 5' },
 		{ id: 6, name: 'User 6' }
-	],
+	] as Array<dialoguesType>,
 	messages: [
 		{ id: 1, message: "Message 1" },
 		{ id: 2, message: 'Message 2' },
@@ -15,18 +23,22 @@ let initialState = {
 		{ id: 4, message: 'Message 4' },
 		{ id: 5, message: 'Message 5' },
 		{ id: 6, message: 'Message 6' }
-	]
+	] as Array<messageType>
 }
-const messagesReducer = (state = initialState, action) => {
+export type initialStateType = typeof initialState
+const messagesReducer = (state = initialState, action: any): initialStateType => {
 	switch (action.type) {
 		case ADD_MESSAGE:
 			return {
 				...state,
-				messages: [...state.messages, { id: 7, message: action.data }],
-				newMessageText: ''
+				messages: [...state.messages, { id: 7, message: action.data }]
 			}
 		default: return state
 	}
 }
-export const addMessageAC = (data) => ({ type: ADD_MESSAGE, data })
+type AddMessageType = {
+	type: typeof ADD_MESSAGE,
+	message: string
+}
+export const addMessage = (message: string): AddMessageType => ({ type: ADD_MESSAGE, message })
 export default messagesReducer;
