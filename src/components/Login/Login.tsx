@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Login.module.css'
-import { Field, reduxForm } from 'redux-form'
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import { Input } from '../common/FormControls/FormControls'
 import { required } from '../../util/validation/validation'
 import { login } from '../../redux/auth-reducer'
@@ -10,10 +10,10 @@ import { Redirect } from 'react-router'
 type TLoginProps = {
 	isAuth: boolean
 	captchaUrl: string | null
-	login: (email: string, password: string, rememberMe: boolean, captcha?: string) => void
+	login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
 }
 const Login: React.FC<TLoginProps> = (props) => {
-	const onSubmit = (data: any) => {
+	const onSubmit = (data: TFormValues) => {
 		props.login(data.email, data.password, data.rememberMe, data.captcha)
 		console.log({ data })
 	}
@@ -25,11 +25,15 @@ const Login: React.FC<TLoginProps> = (props) => {
 	</div>
 }
 type TLoginFormProps = {
-	handleSubmit: (data: any) => void
-	error: string | null
 	captchaUrl: string | null
 }
-const LoginForm: React.FC<TLoginFormProps> = (props) => {
+type TFormValues = {
+	email: string
+	password: string
+	rememberMe: boolean
+	captcha: string
+}
+const LoginForm: React.FC<InjectedFormProps<TFormValues, TLoginFormProps> & TLoginFormProps> = (props) => {
 	return <form className={s.form} onSubmit={props.handleSubmit} >
 		<div className={s.field}>
 			<Field
@@ -67,7 +71,7 @@ const LoginForm: React.FC<TLoginFormProps> = (props) => {
 	</form>
 }
 
-const ReduxLoginForm = reduxForm({ form: 'login' })(LoginForm);
+const ReduxLoginForm = reduxForm<TFormValues, TLoginFormProps>({ form: 'login' })(LoginForm);
 const msp = (state: AppStateType) => ({
 	isAuth: state.auth.isAuth,
 	captchaUrl: state.auth.captchaUrl
