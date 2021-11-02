@@ -2,7 +2,15 @@ import React from 'react';
 import s from './Header.module.css'
 import logo from '../../img/logo.png'
 import { NavLink } from 'react-router-dom';
-const Header = (props) => {
+import { connect } from "react-redux";
+import { logout } from "../../redux/auth-reducer";
+import { AppStateType } from '../../redux/redux-store';
+type Tprops = {
+	logout: () => void
+	login: string | null
+	isAuth: boolean
+}
+const Header: React.FC<Tprops> = (props) => {
 	return (
 		<header className={s.header}>
 			<div className={s.logoblock}><img src={logo} alt=''></img>
@@ -15,4 +23,8 @@ const Header = (props) => {
 		</header >
 	);
 };
-export default Header;
+const msp = (state: AppStateType) => ({
+	isAuth: state.auth.isAuth,
+	login: state.auth.login
+});
+export default connect(msp, { logout })(Header);

@@ -1,9 +1,18 @@
 import React from 'react';
 import s from './Profile.module.css'
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import { ProfileType } from '../../types/types'
+import MyPostsContainer from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Preloader from '../common/Preloader/Preloader';
-const Profile = ({ profile, status, updateStatus, isOwner, changePhoto, updateProfle }) => {
+type Tprops = {
+	profile: ProfileType,
+	status: string,
+	isOwner: boolean,
+	updateStatus: (status: string) => void,
+	changePhoto: (photo: any) => void,
+	updateProfle: (profile: ProfileType) => void
+}
+const Profile: React.FC<Tprops> = ({ profile, status, updateStatus, isOwner, changePhoto, updateProfle }) => {
 	if (!profile) {
 		return <Preloader />
 	}

@@ -1,6 +1,11 @@
 import s from './Post.module.css'
 import defUserPic from '../../../../img/ava.png'
-const Post = (props) => {
+type Tprops = {
+	userpic: string | null
+	message: string
+	likesCount: number
+}
+const Post: React.FC<Tprops> = (props) => {
 	return (
 		<div className={s.Post} >
 			<img className={s.ava} src={props.userpic !== null ? props.userpic : defUserPic} alt='userpic'></img>

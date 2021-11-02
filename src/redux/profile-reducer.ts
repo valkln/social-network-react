@@ -1,4 +1,4 @@
-import { PhotosType, ContactsType, PostType } from './../types/types';
+import { PhotosType, ContactsType, PostType, ProfileType } from './../types/types';
 import { stopSubmit } from "redux-form";
 import { profileAPI } from "../API/api";
 
@@ -6,14 +6,6 @@ const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 const SET_PHOTOS = 'SET_PHOTOS';
-type ProfileType = {
-	userId: number
-	lookingForAJob: boolean
-	lookingForAJobDescription: string
-	fullName: string
-	contacts: ContactsType,
-	photos: PhotosType
-}
 
 let initialState = {
 	profile: null as ProfileType | null,

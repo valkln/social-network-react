@@ -1,9 +1,9 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-type dialoguesType = {
+export type dialoguesType = {
 	id: number,
 	name: string
 }
-type messageType = {
+export type messageType = {
 	id: number,
 	message: string
 }

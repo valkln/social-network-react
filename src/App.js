@@ -1,9 +1,9 @@
 import './App.css';
 import { Route } from "react-router-dom";
-import HeaderContainer from './components/Header/HeaderContainer';
+import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import MessagesContainer from './components/Messages/MessagesContainer';
+import Messages from './components/Messages/Messages';
 import UsersContainer from './components/Users/UsersContainer';
 import Settings from './components/Settings/Settings';
 import Login from './components/Login/Login';
@@ -22,14 +22,13 @@ class App extends React.Component {
     if (!this.props.initialized) {
       return <Preloader />
     } else return <div className="app-wrapper">
-      <HeaderContainer />
+      <Header />
       <Navbar />
       <div className='app-wrapper-content'>
         <Route exact path='/'> <Redirect to={'/profile'} /> </Route>
         <Route path='/profile/:userId?'> <ProfileContainer /></Route>
-        <Route path='/messages'><MessagesContainer /></Route>
+        <Route path='/messages'><Messages /></Route>
         <Route path='/users'> <UsersContainer /> </Route>
-        <Route path='/settings'> <Settings /> </Route>
         <Route path='/login'> <Login /> </Route>
       </div>
     </div>

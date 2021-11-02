@@ -5,16 +5,22 @@ import { Textarea } from "../common/FormControls/FormControls";
 import s from './Messages.module.css';
 
 const maxLength50 = maxLengthCreator(50)
-const AddMessage = (props) => {
-	const onSubmit = (formData) => {
-		props.addMessage(formData.body)
+type TAddMessageProps = {
+	addMessage: (message: string) => void
+}
+const AddMessage: React.FC<TAddMessageProps> = ({ addMessage }) => {
+	const onSubmit = (formData: any) => {
+		addMessage(formData.body)
 	}
 	return (
 		<ReduxMessageForm onSubmit={onSubmit} />
 	)
 };
-const MessageForm = (props) => {
-	return <form onSubmit={props.handleSubmit} className={s.myMessage}>
+type TMessageFormProps = {
+	handleSubmit: (formData: any) => void
+}
+const MessageForm: React.FC<TMessageFormProps> = ({ handleSubmit }) => {
+	return <form onSubmit={handleSubmit} className={s.myMessage}>
 		<Field name='body' validate={[required, maxLength50]} component={Textarea} placeholder='Enter your message' className={s.text} />
 		<button className={s.send}>send</button>
 	</form>

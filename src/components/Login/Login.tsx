@@ -4,10 +4,16 @@ import { Field, reduxForm } from 'redux-form'
 import { Input } from '../common/FormControls/FormControls'
 import { required } from '../../util/validation/validation'
 import { login } from '../../redux/auth-reducer'
+import { AppStateType } from '../../redux/redux-store';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-const Login = (props) => {
-	const onSubmit = (data) => {
+type TLoginProps = {
+	isAuth: boolean
+	captchaUrl: string | null
+	login: (email: string, password: string, rememberMe: boolean, captcha?: string) => void
+}
+const Login: React.FC<TLoginProps> = (props) => {
+	const onSubmit = (data: any) => {
 		props.login(data.email, data.password, data.rememberMe, data.captcha)
 		console.log({ data })
 	}
@@ -18,7 +24,12 @@ const Login = (props) => {
 		<ReduxLoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
 	</div>
 }
-const LoginForm = (props) => {
+type TLoginFormProps = {
+	handleSubmit: (data: any) => void
+	error: string | null
+	captchaUrl: string | null
+}
+const LoginForm: React.FC<TLoginFormProps> = (props) => {
 	return <form className={s.form} onSubmit={props.handleSubmit} >
 		<div className={s.field}>
 			<Field
@@ -41,8 +52,8 @@ const LoginForm = (props) => {
 			< Field name='rememberMe' component={Input} type={"checkbox"} /> remember me
 		</div>
 		{props.error && <div className={s.summary_error}>{props.error}</div>}
-		{props.captchaUrl ? <div classname={s.captcha} >
-			<img classname={s.captchaPic} src={props.captchaUrl} alt="" />
+		{props.captchaUrl ? <div className={s.captcha} >
+			<img className={s.captchaPic} src={props.captchaUrl} alt="" />
 			<div className={s.field}><Field
 				className={s.input}
 				name='captcha'
@@ -55,8 +66,9 @@ const LoginForm = (props) => {
 		</div>
 	</form>
 }
+
 const ReduxLoginForm = reduxForm({ form: 'login' })(LoginForm);
-const msp = (state) => ({
+const msp = (state: AppStateType) => ({
 	isAuth: state.auth.isAuth,
 	captchaUrl: state.auth.captchaUrl
 })

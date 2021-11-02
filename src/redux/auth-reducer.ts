@@ -8,8 +8,8 @@ let initialState = {
 	email: null as string | null,
 	login: null as string | null,
 	isAuth: false,
-	captchaUrl: null as any
-};
+	captchaUrl: null as string | null
+}
 export type initialStateType = typeof initialState
 
 const authReducer = (state = initialState, action: any): initialStateType => {
@@ -49,7 +49,7 @@ export const getAuth = () => async (dispatch: any) => {
 		dispatch(setAuthData(id, email, login, true))
 	}
 }
-export const login = (email: string, password: string, rememberMe: boolean, captcha: any) => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha?: any) => async (dispatch: any) => {
 	const response = await authAPI.login(email, password, rememberMe, captcha)
 	if (response.resultCode === 0) {
 		dispatch(getAuth())
