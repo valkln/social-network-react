@@ -1,12 +1,13 @@
 .header {
-	font-size: 45px;
 	color: white;
+	font-size: 30px;
 	text-align: center;
-	padding-top: 30px;
+	width: 25%;
 }
+
 .form {
-	width: 80%;
-	margin: 0 auto;
+	width: 25%;
+	margin-left: 30px;
 }
 .field {
 	margin: 10px 0;
@@ -15,10 +16,28 @@
 	padding: 5px 10px;
 }
 .input {
+	width: 100%;
 	padding: 5px 10px;
 	border-radius: 10px;
 }
-.summary_error {
+.label {
+	display: block;
+	margin: 5px auto;
+	text-align: center;
+	color: white;
+}
+.checkbox {
+	margin: 10px 0;
+}
+.checkbox label {
+	color: white;
+}
+.checkbox input {
+	margin-left: 15px;
+}
+.error {
+	margin: 5px 0;
+	width: 100%;
 	border: 1px solid red;
 	padding: 10px;
 	color: red;
