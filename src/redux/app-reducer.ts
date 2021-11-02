@@ -1,3 +1,4 @@
+import { Dispatch } from 'redux';
 import { getAuth } from "./auth-reducer";
 export type initialStateType = {
 	initialized: boolean
