@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import s from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus';
-import EditProfile from './EditProfile';
+import EditProfile from './EditProfile/EditProfile';
 import Userpic from './Userpic';
 const ProfileInfo = ({ profile, ...props }) => {
 	let [editMode, setEditMode] = useState(false)
@@ -10,7 +10,7 @@ const ProfileInfo = ({ profile, ...props }) => {
 			<Userpic userpic={profile.photos.large} isOwner={props.isOwner} changePhoto={props.changePhoto} />
 			<div className={s.userinfo}>
 				<ProfileStatus status={props.status} updateStatus={props.updateStatus} />
-				{editMode ? <EditProfile setEditMode={setEditMode} updateProfle={props.updateProfle} profile={profile} /> : <UserData setEditMode={setEditMode} isOwner={props.isOwner} profile={profile} />}
+				{editMode ? <EditProfile setEditMode={setEditMode} updateProfile={props.updateProfile} profile={profile} /> : <UserData setEditMode={setEditMode} isOwner={props.isOwner} profile={profile} />}
 			</div>
 		</div >
 	);

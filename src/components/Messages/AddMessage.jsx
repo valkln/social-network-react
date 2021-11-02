@@ -1,22 +1,35 @@
+import { useFormik } from "formik";
 import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { Textarea } from "../common/FormControls/FormControls";
 import s from './Messages.module.css';
+import * as Yup from 'yup';
 
 const AddMessage = (props) => {
-	const onSubmit = (formData) => {
-		props.addMessage(formData.body)
-	}
-	return (
-		<ReduxMessageForm onSubmit={onSubmit} />
-	)
+	const formik = useFormik({
+		initialValues: {
+			body: ''
+		},
+		validationSchema: Yup.object({
+			body: Yup.string()
+				.required('Message can\'t be empty')
+		}),
+		onSubmit: (values) => {
+			debugger
+			props.addMessage(values.body)
+		},
+	});
+	return <form
+		onSubmit={formik.handleSubmit}
+		className={s.myMessage}>
+		<textarea
+			name="body"
+			className={s.text}
+			placeholder='Enter your message'
+			onChange={formik.handleChange}
+			onBlur={formik.handleBlur}
+			value={formik.values.email}
+		/>
+		<button className={s.send} type="submit" >Submit</button>
+		{formik.touched.body && formik.errors.body ? <div className={s.error}>{formik.errors.body}</div> : null}
+	</form >
 };
-const MessageForm = (props) => {
-	return <form onSubmit={props.handleSubmit} className={s.myMessage}>
-		<Field name='body' component={Textarea} placeholder='Enter your message' className={s.text} />
-		<button className={s.send}>send</button>
-	</form>
-}
-
-const ReduxMessageForm = reduxForm({ form: 'addMessage' })(MessageForm)
 export default AddMessage;

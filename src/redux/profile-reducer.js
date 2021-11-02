@@ -62,9 +62,9 @@ export const changePhoto = (photo) => async (dispatch) => {
 		dispatch(setPhotos(response.data.photos))
 	}
 }
-export const updateProfle = (data) => async (dispatch, getState) => {
+export const updateProfile = (data) => async (dispatch, getState) => {
 	let id = getState().auth.userId
-	let response = await profileAPI.updateProfle(data);
+	let response = await profileAPI.updateProfile(data);
 	if (response.resultCode === 0) {
 		dispatch(getProfile(id))
 	} else {
