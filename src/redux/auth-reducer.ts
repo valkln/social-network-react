@@ -1,8 +1,8 @@
+import { securityAPI } from './../API/security-api';
+import { authAPI } from './../API/auth-api';
 import { AppStateType, InferActionTypes } from './redux-store';
 import { resultCode } from './../API/api';
-import { authAPI, securityAPI } from "../API/api";
 import { ThunkAction } from 'redux-thunk';
-
 let initialState = {
 	userId: null as number | null,
 	email: null as string | null,
@@ -34,29 +34,29 @@ const actions = {
 //thunks
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>;
 export const getAuth = (): ThunkType => async (dispatch) => {
-	const response = await authAPI.getAuth()
-	if (response.resultCode === resultCode.Success) {
-		let { id, email, login } = response.data;
+	const res = await authAPI.getAuth()
+	if (res.resultCode === resultCode.Success) {
+		let { id, email, login } = res.data;
 		dispatch(actions.setAuthData(id, email, login, true))
 	}
 }
 export const login = (email: string, password: string, rememberMe: boolean, captcha?: any): ThunkType => async (dispatch) => {
-	const response = await authAPI.login(email, password, rememberMe, captcha)
-	if (response.resultCode === resultCode.Success) {
+	const res = await authAPI.login(email, password, rememberMe, captcha)
+	if (res.resultCode === resultCode.Success) {
 		dispatch(getAuth())
-	} else if (response.resultCode === resultCode.RequiredCaptcha) {
+	} else if (res.resultCode === resultCode.RequiredCaptcha) {
 		dispatch(getCaptcha())
 	}
 }
 export const getCaptcha = (): ThunkType => async (dispatch) => {
-	const response = await securityAPI.getCaptcha();
-	const captchaUrl = response.data.url;
+	const res = await securityAPI.getCaptcha();
+	const captchaUrl = res.data.url;
 	dispatch(actions.setCaptcha(captchaUrl));
 
 }
 export const logout = (): ThunkType => async (dispatch) => {
-	const response = await authAPI.logout()
-	if (response.resultCode === resultCode.Success) {
+	const res = await authAPI.logout()
+	if (res.resultCode === resultCode.Success) {
 		dispatch(actions.setAuthData(null, null, null, false))
 	}
 }

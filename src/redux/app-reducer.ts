@@ -1,4 +1,3 @@
-import { Dispatch } from 'redux';
 import { getAuth } from "./auth-reducer";
 export type initialStateType = {
 	initialized: boolean
@@ -16,13 +15,15 @@ export const appReducer = (state = initialState, action: any): initialStateType 
 		default: return state
 	}
 };
-export const setInit = () => ({ type: 'SET_INIT' })
+const actions = {
+	setInit: () => ({ type: 'SET_INIT' })
+}
 
 export const getInit = () => (dispatch: any) => {
 	let promise = dispatch(getAuth());
 	Promise.all([promise])
 		.then(() => {
-			dispatch(setInit());
+			dispatch(actions.setInit());
 		})
 }
 

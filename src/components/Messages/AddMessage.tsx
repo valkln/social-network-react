@@ -16,6 +16,7 @@ const AddMessage: React.FC<TProps> = (props) => {
 		}),
 		onSubmit: (values) => {
 			props.addMessage(values.body)
+			formik.resetForm()
 		},
 	});
 	return <form
@@ -27,7 +28,7 @@ const AddMessage: React.FC<TProps> = (props) => {
 			placeholder='Enter your message'
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
-			value={formik.values.body}
+			value={formik.values.body || ''}
 		/>
 		<button className={s.send} type="submit" >Submit</button>
 		{formik.touched.body && formik.errors.body ? <div className={s.error}>{formik.errors.body}</div> : null}

@@ -1,8 +1,8 @@
 import { UserType } from './../types/types';
-import { usersAPI } from "../API/api"
-import { Dispatch } from 'redux';
+import { usersAPI } from "../API/users-api"
 import { AppStateType, InferActionTypes } from './redux-store';
 import { ThunkAction } from 'redux-thunk';
+import { resultCode } from '../API/api';
 
 let initialState = {
 	users: [] as Array<UserType>,
@@ -68,19 +68,18 @@ export const getUsers = (currentPage: number, pageSize: number): ThunkType => as
 	dispatch(actions.setUsersTotalCount(data.totalCount))
 	dispatch(actions.toggleIsFetching(false));
 }
-
 export const followPost = (id: number, followed: boolean): ThunkType => async (dispatch) => {
 	dispatch(actions.toggleIsFollowingInProgress(true, id));
-	let response = await usersAPI.followPost(id)
-	if (response.resultCode === 0) {
+	let res = await usersAPI.followPost(id)
+	if (res.resultCode === resultCode.Success) {
 		dispatch(actions.toggleFollow(id, followed))
 	}
 	dispatch(actions.toggleIsFollowingInProgress(false, id));
 }
 export const followDelete = (id: number, followed: boolean): ThunkType => async (dispatch) => {
 	dispatch(actions.toggleIsFollowingInProgress(true, id));
-	let response = await usersAPI.followDelete(id)
-	if (response.resultCode === 0) {
+	let res = await usersAPI.followDelete(id)
+	if (res.resultCode === resultCode.Success) {
 		dispatch(actions.toggleFollow(id, followed))
 	}
 	dispatch(actions.toggleIsFollowingInProgress(false, id));

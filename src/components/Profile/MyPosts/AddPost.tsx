@@ -16,6 +16,7 @@ const AddPost: React.FC<Tprops> = (props) => {
 		}),
 		onSubmit: (values) => {
 			props.addPost(values.body)
+			formik.resetForm({})
 		},
 	});
 	return <form
