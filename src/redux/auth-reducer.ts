@@ -1,5 +1,4 @@
 import { resultCode } from './../API/api';
-import { stopSubmit } from "redux-form";
 import { authAPI, securityAPI } from "../API/api";
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 const SET_CAPTCHA = 'SET_CAPTCHA'
@@ -56,9 +55,6 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 		dispatch(getAuth())
 	} else if (response.resultCode === resultCode.RequiredCaptcha) {
 		dispatch(getCaptcha())
-	} else {
-		let message = response.messages.length > 0 ? response.messages[0] : 'some error';
-		dispatch(stopSubmit('login', { _error: message }))
 	}
 }
 export const getCaptcha = () => async (dispatch: any) => {

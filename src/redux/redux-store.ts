@@ -4,7 +4,6 @@ import profileReducer from "./profile-reducer";
 import usersReducer from "./users-reducer";
 import appReducer from "./app-reducer";
 import thunkMiddleware from "redux-thunk";
-import { reducer as formReducer } from 'redux-form'
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
 //@ts-ignore
@@ -15,8 +14,7 @@ let rootReducer = combineReducers({
 	messages: messagesReducer,
 	users: usersReducer,
 	auth: authReducer,
-	app: appReducer,
-	form: formReducer
+	app: appReducer
 });
 type rootReducerType = typeof rootReducer;
 export type AppStateType = ReturnType<rootReducerType>;

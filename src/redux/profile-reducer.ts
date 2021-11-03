@@ -1,6 +1,5 @@
 import { AppStateType } from './redux-store';
 import { PhotosType, ContactsType, PostType, ProfileType } from './../types/types';
-import { stopSubmit } from "redux-form";
 import { profileAPI } from "../API/api";
 import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
@@ -25,7 +24,7 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
 		case ADD_POST:
 			return {
 				...state,
-				posts: [...state.posts, { id: 4, likesCount: 0, message: action.payload.body }]
+				posts: [...state.posts, { id: 4, likesCount: 0, message: action.payload }]
 			}
 		case SET_PROFILE:
 			return {
@@ -76,14 +75,11 @@ export const changePhoto = (photo: any): ThunkType => async (dispatch) => {
 		dispatch(setPhotos(response.data.photos))
 	}
 }
-export const updateProfle = (profile: ProfileType) => async (dispatch: any, getState: any) => {
+export const updateProfile = (profile: ProfileType) => async (dispatch: any, getState: any) => {
 	let id = getState().auth.userId
-	let response = await profileAPI.updateProfle(profile);
+	let response = await profileAPI.updateProfile(profile);
 	if (response.resultCode === 0) {
 		dispatch(getProfile(id))
-	} else {
-		dispatch(stopSubmit('edit-profile', { _error: response.messages[0] }))
-		return Promise.reject(response.messages[0])
 	}
 }
 export default profileReducer;

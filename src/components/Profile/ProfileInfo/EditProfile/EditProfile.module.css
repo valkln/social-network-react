@@ -1,0 +1,38 @@
+.form {
+	display: flex;
+}
+.col {
+	width: 50%;
+	flex: 1 1 50%;
+}
+.field {
+	margin: 5px 0;
+}
+.field textarea {
+	width: 75%;
+	height: 140px;
+	padding: 5px;
+}
+.field input {
+	padding: 5px;
+}
+.label {
+	display: block;
+}
+.checkbox input {
+	margin-left: 10px;
+}
+.btn {
+	background-color: #2ad4e0;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+.error {
+	display: inline-block;
+	text-transform: none;
+	border: 2px solid red;
+	border-radius: 20px;
+	padding: 10px;
+	font-size: 20px;
+}

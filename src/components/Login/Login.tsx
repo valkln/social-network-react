@@ -1,79 +1,102 @@
 import React from 'react';
 import s from './Login.module.css'
-import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import { Input } from '../common/FormControls/FormControls'
-import { required } from '../../util/validation/validation'
 import { login } from '../../redux/auth-reducer'
-import { AppStateType } from '../../redux/redux-store';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { AppStateType } from '../../redux/redux-store';
 type TLoginProps = {
-	isAuth: boolean
-	captchaUrl: string | null
-	login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
+	isAuth: boolean,
+	captchaUrl: string | null,
+	login: (email: string, password: string, rememberMe: boolean, captcha?: any) => void
 }
 const Login: React.FC<TLoginProps> = (props) => {
-	const onSubmit = (data: TFormValues) => {
-		props.login(data.email, data.password, data.rememberMe, data.captcha)
-		console.log({ data })
-	}
 	if (props.isAuth) {
 		return <Redirect to={'/profile'} />
 	} else return <div>
 		<h1 className={s.header}>Login</h1>
-		<ReduxLoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
+		<LoginForm login={props.login} captchaUrl={props.captchaUrl} />
 	</div>
 }
-type TLoginFormProps = {
-	captchaUrl: string | null
-}
-type TFormValues = {
-	email: string
-	password: string
-	rememberMe: boolean
-	captcha: string
-}
-const LoginForm: React.FC<InjectedFormProps<TFormValues, TLoginFormProps> & TLoginFormProps> = (props) => {
-	return <form className={s.form} onSubmit={props.handleSubmit} >
-		<div className={s.field}>
-			<Field
-				className={s.input}
-				name='email'
-				component={Input}
-				placeholder={'email'}
-				validate={[required]} />
-		</div>
-		<div className={s.field}>
-			< Field
-				type='password'
-				className={s.input}
-				name='password'
-				component={Input}
-				placeholder={'password'}
-				validate={[required]} />
-		</div>
-		<div className={s.field}>
-			< Field name='rememberMe' component={Input} type={"checkbox"} /> remember me
-		</div>
-		{props.error && <div className={s.summary_error}>{props.error}</div>}
-		{props.captchaUrl ? <div className={s.captcha} >
-			<img className={s.captchaPic} src={props.captchaUrl} alt="" />
-			<div className={s.field}><Field
-				className={s.input}
-				name='captcha'
-				component={Input}
-				placeholder={'captcha'}
-				validate={[required]} /></div>
-		</div> : null}
-		<div className={s.field}>
-			<button className={s.btn}>Log in</button>
-		</div>
-	</form>
-}
-
-const ReduxLoginForm = reduxForm<TFormValues, TLoginFormProps>({ form: 'login' })(LoginForm);
 const msp = (state: AppStateType) => ({
 	isAuth: state.auth.isAuth,
 	captchaUrl: state.auth.captchaUrl
 })
 export default connect(msp, { login })(Login);
+type TLoginFormProps = {
+	captchaUrl: string | null,
+	login: (email: string, password: string, rememberMe: boolean, captcha?: any) => void
+}
+const LoginForm: React.FC<TLoginFormProps> = (props) => {
+	const formik = useFormik({
+		initialValues: {
+			email: '' as string,
+			password: '' as string,
+			rememberMe: false,
+			captcha: '' as string
+		},
+		validationSchema: Yup.object({
+			password: Yup.string()
+				.required('Required'),
+			email: Yup.string().email('Invalid email address').required('Required')
+		}),
+		onSubmit: (values) => {
+			props.login(values.email, values.password, values.rememberMe, values.captcha)
+		},
+	});
+	return <form
+		onSubmit={formik.handleSubmit}
+		className={s.form}>
+		<div className={s.field}>
+			<label className={s.label} htmlFor="email">Email Address</label>
+			<input
+				name="email"
+				type="email"
+				className={s.input}
+				onChange={formik.handleChange}
+				onBlur={formik.handleBlur}
+				value={formik.values.email}
+			/>
+			{formik.touched.email && formik.errors.email ? <div className={s.error}>{formik.errors.email}</div> : null}
+		</div>
+		<div className={s.field}>
+			<label className={s.label} htmlFor="password">Password</label>
+			<input
+				name="password"
+				type="password"
+				className={s.input}
+				onChange={formik.handleChange}
+				onBlur={formik.handleBlur}
+				value={formik.values.password}
+			/>
+			{formik.touched.password && formik.errors.password ? <div className={s.error}>{formik.errors.password}</div> : null}
+		</div>
+		<div className={s.checkbox}>
+			<label htmlFor="rememberMe">Remember Me</label>
+			<input
+				name="rememberMe"
+				type="checkbox"
+				onChange={formik.handleChange}
+				checked={formik.values.rememberMe}
+			/>
+		</div>
+		{
+			props.captchaUrl ? <div className={s.captcha} >
+				<img className={s.captchaPic} src={props.captchaUrl} alt="" />
+				<div className={s.field}>
+					<input
+						className={s.input}
+						name='captcha'
+						type="text"
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+						value={formik.values.captcha}
+					/></div>
+			</div>
+				: null
+		}
+		{formik.touched.captcha && formik.errors.captcha && props.captchaUrl ? <div className={s.error}>{formik.errors.captcha}</div> : null}
+		<button className={s.btn} type="submit" >Submit</button>
+	</form >
+};

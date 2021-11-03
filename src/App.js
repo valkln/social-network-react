@@ -5,7 +5,6 @@ import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Messages from './components/Messages/Messages';
 import UsersContainer from './components/Users/UsersContainer';
-import Settings from './components/Settings/Settings';
 import Login from './components/Login/Login';
 import React from 'react';
 import { connect } from 'react-redux';

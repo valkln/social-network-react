@@ -10,15 +10,15 @@ type Tprops = {
 	isOwner: boolean,
 	updateStatus: (status: string) => void,
 	changePhoto: (photo: any) => void,
-	updateProfle: (profile: ProfileType) => void
+	updateProfile: (profile: ProfileType) => void
 }
-const Profile: React.FC<Tprops> = ({ profile, status, updateStatus, isOwner, changePhoto, updateProfle }) => {
+const Profile: React.FC<Tprops> = ({ profile, status, updateStatus, isOwner, changePhoto, updateProfile }) => {
 	if (!profile) {
 		return <Preloader />
 	}
 	else return (
 		<div className={s.profile}>
-			<ProfileInfo isOwner={isOwner} updateProfle={updateProfle} changePhoto={changePhoto} profile={profile} status={status} updateStatus={updateStatus} />
+			<ProfileInfo isOwner={isOwner} updateProfile={updateProfile} changePhoto={changePhoto} profile={profile} status={status} updateStatus={updateStatus} />
 			<MyPostsContainer profile={profile} />
 		</div>
 	);

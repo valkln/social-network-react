@@ -85,7 +85,7 @@ export const profileAPI = {
 				return response.data;
 			});
 	},
-	updateProfle(data: ProfileType) {
+	updateProfile(data: ProfileType) {
 		return instance.put(`profile`, data)
 			.then(response => {
 				return response.data;
