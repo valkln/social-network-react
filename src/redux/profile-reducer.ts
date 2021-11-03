@@ -1,7 +1,6 @@
-import { AppStateType, InferActionTypes } from './redux-store';
+import { InferActionTypes, BaseThunkType } from './redux-store';
 import { PhotosType, PostType, ProfileType } from './../types/types';
 import { profileAPI } from "../API/profile-api";
-import { ThunkAction } from 'redux-thunk';
 import { resultCode } from '../API/api';
 
 let initialState = {
@@ -35,17 +34,16 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
 		default: return state
 	}
 }
-//AC Types
-type ActionTypes = InferActionTypes<typeof actions>
-//AC
+//actions
 export const actions = {
-	addPostAC: (message: string) => ({ type: 'ADD_POST', message }),
-	setProfile: (profile: ProfileType) => ({ type: 'SET_PROFILE', profile }),
-	setStatus: (status: string) => ({ type: 'SET_STATUS', status }),
-	setPhotos: (photos: PhotosType) => ({ type: 'SET_PHOTOS', photos })
+	addPostAC: (message: string) => ({ type: 'ADD_POST', message } as const),
+	setProfile: (profile: ProfileType) => ({ type: 'SET_PROFILE', profile } as const),
+	setStatus: (status: string) => ({ type: 'SET_STATUS', status } as const),
+	setPhotos: (photos: PhotosType) => ({ type: 'SET_PHOTOS', photos } as const)
 }
+type ActionTypes = InferActionTypes<typeof actions>
 //thunks
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>;
+type ThunkType = BaseThunkType<ActionTypes>
 export const getProfile = (id: number): ThunkType => async (dispatch) => {
 	let res = await profileAPI.getProfile(id);
 	dispatch(actions.setProfile(res))

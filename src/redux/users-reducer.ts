@@ -1,7 +1,6 @@
 import { UserType } from './../types/types';
 import { usersAPI } from "../API/users-api"
-import { AppStateType, InferActionTypes } from './redux-store';
-import { ThunkAction } from 'redux-thunk';
+import { InferActionTypes, BaseThunkType } from './redux-store';
 import { resultCode } from '../API/api';
 
 let initialState = {
@@ -48,18 +47,20 @@ const usersReducer = (state = initialState, action: ActionTypes): initialStateTy
 		default: return state
 	}
 }
-type ActionTypes = InferActionTypes<typeof actions>
-//AC
+
+//actions
 export const actions = {
 	toggleFollow: (id: number, followed: boolean) => ({ type: 'TOGGLE_FOLLOW', id, followed } as const),
 	setUsers: (users: Array<UserType>) => ({ type: 'SET_USERS', users } as const),
 	setCurrentPage: (currentPage: number) => ({ type: 'SET_CURRENT_PAGE', currentPage } as const),
 	setUsersTotalCount: (totalCount: number) => ({ type: 'SET_TOTAL_COUNT', totalCount } as const),
 	toggleIsFetching: (isFetching: boolean) => ({ type: 'TOGGLE_IS_FETCHING', isFetching } as const),
-	toggleIsFollowingInProgress: (followingInProgress: boolean, id: number) => ({ type: 'TOGGLE_IS_FOLLOWING_IN_PROGRESS', followingInProgress, id } as const)
+	toggleIsFollowingInProgress: (followingInProgress: boolean, id: number) =>
+		({ type: 'TOGGLE_IS_FOLLOWING_IN_PROGRESS', followingInProgress, id } as const)
 }
-//thunk creators
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>;
+type ActionTypes = InferActionTypes<typeof actions>
+//thunks
+type ThunkType = BaseThunkType<ActionTypes>
 export const getUsers = (currentPage: number, pageSize: number): ThunkType => async (dispatch) => {
 	dispatch(actions.toggleIsFetching(true));
 	dispatch(actions.setCurrentPage(currentPage))

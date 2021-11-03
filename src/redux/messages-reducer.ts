@@ -1,3 +1,5 @@
+import { InferActionTypes } from "./redux-store"
+
 export type dialoguesType = {
 	id: number,
 	name: string
@@ -25,7 +27,7 @@ let initialState = {
 	] as Array<messageType>
 }
 export type initialStateType = typeof initialState
-const messagesReducer = (state = initialState, action: any): initialStateType => {
+const messagesReducer = (state = initialState, action: ActionTypes): initialStateType => {
 	switch (action.type) {
 		case 'ADD_MESSAGE':
 			return {
@@ -35,5 +37,8 @@ const messagesReducer = (state = initialState, action: any): initialStateType =>
 		default: return state
 	}
 }
-export const addMessage = (message: string) => ({ type: 'ADD_MESSAGE', message })
+const actions = {
+	addMessage: (message: string) => ({ type: 'ADD_MESSAGE', message } as const)
+}
+type ActionTypes = InferActionTypes<typeof actions>
 export default messagesReducer;
