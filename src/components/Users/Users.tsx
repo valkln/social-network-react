@@ -20,7 +20,7 @@ const Users: React.FC<PropsType> = (props) => {
 	return <div className={s.users} >
 		<Paginator onPageChanged={props.onPageChanged} currentPage={props.currentPage} totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} />
 		<h3 className={s.users_title}>Find Users</h3>
-		<div>
+		<div className={s.list}>
 			{props.users.map(u => <User
 				key={u.id}
 				user={u}

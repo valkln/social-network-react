@@ -1,5 +1,5 @@
 import { AppStateType, InferActionTypes } from './redux-store';
-import { PhotosType, ContactsType, PostType, ProfileType } from './../types/types';
+import { PhotosType, PostType, ProfileType } from './../types/types';
 import { profileAPI } from "../API/profile-api";
 import { ThunkAction } from 'redux-thunk';
 import { resultCode } from '../API/api';

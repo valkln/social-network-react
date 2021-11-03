@@ -18,11 +18,11 @@ const ProfileInfo = ({ profile, ...props }) => {
 const UserData = ({ profile, isOwner, setEditMode }) => {
 	return <div className={s.userdata}>
 		<div className={s.fullName}>{profile.fullName}</div>
+		{profile.aboutMe ? <div>{profile.aboutMe}</div> : null}
 		<div>Looking for a job: {profile.lookingForAJob ? 'yes' : 'no'}</div>
 		{profile.lookingForAJob ?
 			<div>My skills: {profile.lookingForAJobDescription} </div>
 			: undefined}
-		{profile.aboutMe ? <div>{profile.aboutMe}</div> : null}
 		<div className={s.contacts}>Contacts:
 			{Object.keys(profile.contacts).map(key => {
 				return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
@@ -33,6 +33,7 @@ const UserData = ({ profile, isOwner, setEditMode }) => {
 }
 
 const Contact = ({ contactTitle, contactValue }) => {
-	return <div className={s.contact}>{contactTitle}: {contactValue}</div>
+	if (!contactValue) return null
+	else return <div className={s.contact}>{contactTitle}: {contactValue}</div>
 }
 export default ProfileInfo;

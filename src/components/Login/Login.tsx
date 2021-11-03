@@ -81,21 +81,20 @@ const LoginForm: React.FC<TLoginFormProps> = (props) => {
 				checked={formik.values.rememberMe}
 			/>
 		</div>
-		{
-			props.captchaUrl ? <div className={s.captcha} >
-				<img className={s.captchaPic} src={props.captchaUrl} alt="" />
-				<div className={s.field}>
-					<input
-						className={s.input}
-						name='captcha'
-						type="text"
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-						value={formik.values.captcha}
-					/></div>
-			</div>
-				: null
-		}
+		{props.captchaUrl ? <div className={s.captcha} >
+			<div>Please enter captcha</div>
+			<img className={s.captchaPic} src={props.captchaUrl} alt="" />
+			<div className={s.field}>
+				<input
+					className={s.input}
+					name='captcha'
+					type="text"
+					onChange={formik.handleChange}
+					onBlur={formik.handleBlur}
+					value={formik.values.captcha}
+				/></div>
+		</div>
+			: null}
 		{formik.touched.captcha && formik.errors.captcha && props.captchaUrl ? <div className={s.error}>{formik.errors.captcha}</div> : null}
 		<button className={s.btn} type="submit" >Submit</button>
 	</form >

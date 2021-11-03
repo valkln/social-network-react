@@ -7,9 +7,20 @@
 .form {
 	width: 80%;
 	margin: 0 auto;
+	color: white;
 }
 .field {
 	margin: 10px 0;
+}
+.field label {
+	display: block;
+	margin: 10px 0;
+}
+.checkbox {
+	margin-bottom: 15px;
+}
+.checkbox label {
+	padding-right: 10px;
 }
 .btn {
 	padding: 5px 10px;
