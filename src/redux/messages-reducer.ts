@@ -1,4 +1,3 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
 export type dialoguesType = {
 	id: number,
 	name: string
@@ -28,7 +27,7 @@ let initialState = {
 export type initialStateType = typeof initialState
 const messagesReducer = (state = initialState, action: any): initialStateType => {
 	switch (action.type) {
-		case ADD_MESSAGE:
+		case 'ADD_MESSAGE':
 			return {
 				...state,
 				messages: [...state.messages, { id: 7, message: action.message }]
@@ -36,9 +35,5 @@ const messagesReducer = (state = initialState, action: any): initialStateType =>
 		default: return state
 	}
 }
-type AddMessageType = {
-	type: typeof ADD_MESSAGE,
-	message: string
-}
-export const addMessage = (message: string): AddMessageType => ({ type: ADD_MESSAGE, message })
+export const addMessage = (message: string) => ({ type: 'ADD_MESSAGE', message })
 export default messagesReducer;

@@ -3,7 +3,7 @@ import AddPost from './AddPost';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 import { AppStateType } from '../../../redux/redux-store';
-import { addPostAC } from '../../../redux/profile-reducer'
+import { actions } from '../../../redux/profile-reducer'
 import { connect } from 'react-redux';
 import { PostType, ProfileType } from '../../../types/types';
 type Tprops = {
@@ -29,5 +29,5 @@ let msp = (state: AppStateType) => {
 		posts: state.profile.posts
 	}
 };
-const MyPostsContainer = connect(msp, { addPostAC })(MyPosts)
+const MyPostsContainer = connect(msp, { addPostAC: actions.addPostAC })(MyPosts)
 export default MyPostsContainer;

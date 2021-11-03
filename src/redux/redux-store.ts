@@ -6,6 +6,8 @@ import appReducer from "./app-reducer";
 import thunkMiddleware from "redux-thunk";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
+type PropertyTypes<T> = T extends { [key: string]: infer U } ? U : never
+export type InferActionTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertyTypes<T>>
 //@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

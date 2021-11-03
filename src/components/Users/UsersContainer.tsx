@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store'
-import {
-	setCurrentPage, toggleIsFetching,
-	getUsers, followDelete, followPost
-} from '../../redux/users-reducer';
+import { getUsers, followDelete, followPost } from '../../redux/users-reducer';
 import React from 'react';
 import Users from './Users';
 import { UserType } from '../../types/types'
@@ -20,8 +17,6 @@ type mstpType = {
 	isFetching: boolean
 }
 type mdtpType = {
-	setCurrentPage: (currentPage: number) => void
-	toggleIsFetching: (isFetching: boolean) => void
 	getUsers: (currentPage: number, pageSize: number) => void
 	followPost: (id: number, followed: boolean) => void
 	followDelete: (id: number, followed: boolean) => void
@@ -65,8 +60,6 @@ let mstp = (state: AppStateType): mstpType => {
 
 export default compose(
 	connect<mstpType, mdtpType, {}, AppStateType>(mstp, {
-		setCurrentPage,
-		toggleIsFetching,
 		getUsers,
 		followPost,
 		followDelete
