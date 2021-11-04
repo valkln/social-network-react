@@ -5,7 +5,6 @@ export const getUsersInfo = (state: AppStateType) => {
 export const getPageSize = (state: AppStateType) => {
 	return state.users.pageSize;
 }
-
 export const getTotalUsersCount = (state: AppStateType) => {
 	return state.users.totalUsersCount
 }

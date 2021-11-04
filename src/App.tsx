@@ -12,8 +12,12 @@ import { compose } from 'redux';
 import { Redirect, withRouter } from "react-router";
 import { getInit } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
-
-class App extends React.Component {
+import { AppStateType } from './redux/redux-store';
+type TProps = {
+  getInit: () => void
+  initialized: boolean
+}
+class App extends React.Component<TProps> {
   componentDidMount() {
     this.props.getInit()
   }
@@ -33,10 +37,10 @@ class App extends React.Component {
     </div>
   }
 }
-const msp = (state) => ({
+const msp = (state: AppStateType) => ({
   initialized: state.app.initialized
 })
 export default compose(
   withRouter,
   connect(msp, { getInit })
-)(App);
+)(App) as React.ComponentType

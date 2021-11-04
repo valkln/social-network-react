@@ -2,8 +2,8 @@ import React from 'react';
 import s from './Messages.module.css';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import AuthRedirect from '../../hoc/AuthRedirect.js';
-import { addMessage, dialoguesType, messageType } from '../../redux/messages-reducer'
+import AuthRedirect from '../../hoc/AuthRedirect';
+import { actions, dialoguesType, messageType } from '../../redux/messages-reducer'
 import Message from './Message/Message';
 import Dialogue from './Dialogue/Dialogue';
 import AddMessage from './AddMessage';
@@ -33,5 +33,5 @@ let msp = (state: AppStateType) => {
 	}
 };
 export default compose(
-	connect(msp, { addMessage }),
-	AuthRedirect)(Messages);
+	connect(msp, { addMessage: actions.addMessage }),
+	AuthRedirect)(Messages) as React.ComponentType

@@ -37,7 +37,7 @@ const messagesReducer = (state = initialState, action: ActionTypes): initialStat
 		default: return state
 	}
 }
-const actions = {
+export const actions = {
 	addMessage: (message: string) => ({ type: 'ADD_MESSAGE', message } as const)
 }
 type ActionTypes = InferActionTypes<typeof actions>

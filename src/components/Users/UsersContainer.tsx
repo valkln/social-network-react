@@ -16,6 +16,7 @@ type mstpType = {
 	followingInProgress: number[]
 	isFetching: boolean
 }
+
 type mdtpType = {
 	getUsers: (currentPage: number, pageSize: number) => void
 	followPost: (id: number, followed: boolean) => void
@@ -59,10 +60,10 @@ let mstp = (state: AppStateType): mstpType => {
 };
 
 export default compose(
-	connect<mstpType, mdtpType, {}, AppStateType>(mstp, {
+	connect(mstp, {
 		getUsers,
 		followPost,
 		followDelete
 	}),
 	AuthRedirect
-)(UsersContainer)
+)(UsersContainer) as React.ComponentType
