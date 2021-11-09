@@ -17,8 +17,8 @@ type TFollowPost = {
 	messages: string[]
 }
 export const usersAPI = {
-	getUsers(currentPage: number, pageSize: number) {
-		return instance.get<TGetUsers>(`users?page=${currentPage}&count=${pageSize}`)
+	getUsers(currentPage: number, pageSize: number, name: string = '', friend: null | boolean = null) {
+		return instance.get<TGetUsers>(`users?page=${currentPage}&count=${pageSize}&term=${name}` + (friend === null ? '' : `&friend=${friend}`))
 			.then(res => res.data)
 	},
 	followDelete(id: number) {

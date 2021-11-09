@@ -33,3 +33,7 @@ export type UserType = {
 	photos: PhotosType
 	followed: boolean
 }
+export type FilterType = {
+	name: string,
+	friend: null | boolean
+}
