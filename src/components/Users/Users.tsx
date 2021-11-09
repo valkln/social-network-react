@@ -9,6 +9,7 @@ import { getCurrentPage, getFilter, getFollowingProgress, getIsFetching, getPage
 import Preloader from '../common/Preloader/Preloader';
 import { compose } from 'redux';
 import AuthRedirect from '../../hoc/AuthRedirect';
+import { useHistory } from 'react-router';
 
 const Users: React.FC = () => {
 	const isFetching = useSelector(getIsFetching)
@@ -17,11 +18,27 @@ const Users: React.FC = () => {
 	const filter = useSelector(getFilter)
 	const currentPage = useSelector(getCurrentPage)
 	const followingInProgress = useSelector(getFollowingProgress)
-
+	const history = useHistory();
 	const dispatch = useDispatch()
 	useEffect(() => {
-		dispatch(getUsers(currentPage, pageSize, filter))
+		const params = new URLSearchParams(window.location.search.substring(1));
+		const Urlname = params.get('term')
+		const Urlpage = params.get('page')
+		const Urlfriend = params.get('friend')
+		let ActualPage = currentPage
+		let ActualFilter = filter
+		if (Urlpage) ActualPage = +Urlpage
+		if (Urlname) ActualFilter.name = Urlname
+		if (Urlfriend === 'null') ActualFilter.friend = null
+		if (Urlfriend === 'true') ActualFilter.friend = true
+		dispatch(getUsers(ActualPage, pageSize, ActualFilter))
 	}, [])
+	useEffect(() => {
+		history.push({
+			pathname: '/users',
+			search: `?term=${filter.name}&friend=${filter.friend}&page=${currentPage}`
+		})
+	}, [filter, currentPage])
 	const unfollow = (id: number, followed: boolean) => {
 		dispatch(followDelete(id, followed))
 	}

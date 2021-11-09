@@ -3,21 +3,22 @@ import s from './SearchForm.module.css';
 import { useFormik } from "formik";
 import { FilterType } from "../../../types/types";
 import { useDispatch, useSelector } from "react-redux";
-import { getPageSize } from "../../../redux/users-selectors";
+import { getFilter, getPageSize } from "../../../redux/users-selectors";
 import { getUsers } from "../../../redux/users-reducer";
-
+type TFriend = 'true' | 'null'
 const SearchForm: React.FC = () => {
 	const pageSize = useSelector(getPageSize)
 	const dispatch = useDispatch()
+	const filter = useSelector(getFilter)
 	const onFilterChanged = (filter: FilterType) => {
 		dispatch(getUsers(1, pageSize, filter));
 	}
-
 	const formik = useFormik({
 		initialValues: {
-			name: '',
-			friend: 'null' as string
+			name: filter.name,
+			friend: String(filter.friend) as TFriend
 		},
+		enableReinitialize: true,
 		onSubmit: async values => {
 			const filter: FilterType = {
 				name: values.name,
