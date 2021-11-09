@@ -2,10 +2,14 @@ import { useFormik } from "formik";
 import React from "react";
 import s from './Messages.module.css';
 import * as Yup from 'yup';
-type TProps = {
-	addMessage: (body: string) => void
-}
-const AddMessage: React.FC<TProps> = (props) => {
+import { useDispatch } from "react-redux";
+import { actions } from "../../redux/messages-reducer";
+
+const AddMessage: React.FC = () => {
+	const dispatch = useDispatch()
+	const submit = (body: string) => {
+		dispatch(actions.addMessage(body))
+	}
 	const formik = useFormik({
 		initialValues: {
 			body: ''
@@ -15,7 +19,7 @@ const AddMessage: React.FC<TProps> = (props) => {
 				.required('Message can\'t be empty')
 		}),
 		onSubmit: (values) => {
-			props.addMessage(values.body)
+			submit(values.body)
 			formik.resetForm()
 		},
 	});

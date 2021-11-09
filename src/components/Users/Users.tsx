@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { followDelete, followPost, getUsers } from '../../redux/users-reducer';
 import { getCurrentPage, getFilter, getFollowingProgress, getIsFetching, getPageSize, getUsersInfo } from '../../redux/users-selectors';
 import Preloader from '../common/Preloader/Preloader';
-import { compose } from 'redux';
 import AuthRedirect from '../../hoc/AuthRedirect';
 import { useHistory } from 'react-router';
 
@@ -65,4 +64,4 @@ const Users: React.FC = () => {
 		</div >
 	</>
 }
-export default compose(AuthRedirect)(Users);
+export default AuthRedirect(Users);

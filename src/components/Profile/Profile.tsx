@@ -1,26 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from './Profile.module.css'
-import { ProfileType } from '../../types/types'
 import MyPostsContainer from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Preloader from '../common/Preloader/Preloader';
-type Tprops = {
-	profile: ProfileType,
-	status: string,
-	isOwner: boolean,
-	updateStatus: (status: string) => void,
-	changePhoto: (photo: any) => void,
-	updateProfile: (profile: ProfileType) => void
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile, getStatus } from '../../redux/profile-reducer';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { getProfileData, getStatusData } from '../../redux/profile-selectors';
+import { getMyId } from '../../redux/auth-selectors';
+type PathParamsType = {
+	userId: string
 }
-const Profile: React.FC<Tprops> = ({ profile, status, updateStatus, isOwner, changePhoto, updateProfile }) => {
+
+const Profile: React.FC<RouteComponentProps<PathParamsType>> = (props) => {
+	const profile = useSelector(getProfileData)
+	let status = useSelector(getStatusData)
+	if (!status) status = ''
+	const isOwner = !props.match.params.userId
+	const dispatch = useDispatch()
+	const myId = useSelector(getMyId)
+	useEffect(() => {
+		let userId: number | null = +props.match.params.userId
+		if (!userId) {
+			userId = myId
+		}
+		if (!userId) {
+			props.history.push('/login');
+		}
+		if (userId) {
+			const id = userId
+			dispatch(getStatus(id))
+			dispatch(getProfile(id))
+		}
+	}, [])
 	if (!profile) {
 		return <Preloader />
 	}
 	else return (
 		<div className={s.profile}>
-			<ProfileInfo isOwner={isOwner} updateProfile={updateProfile} changePhoto={changePhoto} profile={profile} status={status} updateStatus={updateStatus} />
+			<ProfileInfo isOwner={isOwner} profile={profile} status={status} />
 			<MyPostsContainer profile={profile} />
 		</div>
 	);
 };
-export default Profile;
+export default withRouter(Profile)

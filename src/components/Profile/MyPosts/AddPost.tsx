@@ -2,10 +2,14 @@ import React from "react";
 import s from './MyPosts.module.css'
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-type Tprops = {
-	addPost: (body: string) => void
-}
-const AddPost: React.FC<Tprops> = (props) => {
+import { useDispatch } from "react-redux";
+import { actions } from "../../../redux/profile-reducer";
+
+const AddPost: React.FC = () => {
+	const dispatch = useDispatch()
+	const addPost = (data: string) => {
+		dispatch(actions.addPostAC(data))
+	}
 	const formik = useFormik({
 		initialValues: {
 			body: ''
@@ -15,7 +19,7 @@ const AddPost: React.FC<Tprops> = (props) => {
 				.required('Post can\'t be empty')
 		}),
 		onSubmit: (values) => {
-			props.addPost(values.body)
+			addPost(values.body)
 			formik.resetForm({})
 		},
 	});

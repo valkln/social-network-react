@@ -8,20 +8,18 @@ type TProfileInfoProps = {
 	profile: ProfileType
 	status: string
 	isOwner: boolean
-	changePhoto: (photo: File) => void
-	updateStatus: (status: string) => void
-	updateProfile: (profile: ProfileType) => void
 }
-const ProfileInfo: React.FC<TProfileInfoProps> = ({ profile, status, isOwner, ...props }) => {
+const ProfileInfo: React.FC<TProfileInfoProps> = ({ profile, status, isOwner }) => {
 	let [editMode, setEditMode] = useState(false)
 	return (
 		<div className={s.profileInfo}>
-			<Userpic userpic={profile.photos.large} isOwner={isOwner} changePhoto={props.changePhoto} />
+			<Userpic userpic={profile.photos.large} isOwner={isOwner} />
 			<div className={s.userinfo}>
-				<ProfileStatus status={status} updateStatus={props.updateStatus} />
+				<ProfileStatus status={status} />
 				{editMode ?
-					<EditProfile setEditMode={setEditMode} updateProfile={props.updateProfile} profile={profile} />
-					: <UserData goToEditMode={() => { setEditMode(true) }} isOwner={isOwner} profile={profile} />}
+					<EditProfile setEditMode={setEditMode} profile={profile} />
+					:
+					<UserData goToEditMode={() => { setEditMode(true) }} isOwner={isOwner} profile={profile} />}
 			</div>
 		</div >
 	);

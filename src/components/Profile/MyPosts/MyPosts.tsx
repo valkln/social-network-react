@@ -4,20 +4,20 @@ import s from './MyPosts.module.css'
 import Post from './Post/Post';
 import { AppStateType } from '../../../redux/redux-store';
 import { actions } from '../../../redux/profile-reducer'
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { PostType, ProfileType } from '../../../types/types';
+import { getPosts } from '../../../redux/profile-selectors';
 type Tprops = {
-	addPostAC: (payload: string) => void,
-	posts: PostType[]
 	profile: ProfileType
 }
-const MyPosts: React.FC<Tprops> = (props) => {
-	let postsElements = props.posts.map(p => <Post userpic={props.profile.photos.small} message={p.message} likesCount={p.likesCount} key={p.id} />)
+const MyPosts: React.FC<Tprops> = ({ profile }) => {
+	const posts = useSelector(getPosts)
+	let postsElements = posts.map(p => <Post userpic={profile.photos.small} message={p.message} likesCount={p.likesCount} key={p.id} />)
 	return (
 		<div className={s.MyPosts}>
 			<h3>posts</h3>
 			<p className={s.new}>What's new?</p>
-			<AddPost addPost={props.addPostAC} />
+			<AddPost />
 			<div className={s.posts}>{postsElements}</div>
 		</ div>
 	);

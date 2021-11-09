@@ -3,12 +3,17 @@ import s from './EditProfile.module.css'
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { ProfileType } from "../../../../types/types";
+import { useDispatch } from "react-redux";
+import { updateProfile } from "../../../../redux/profile-reducer";
 type Tprops = {
-	updateProfile: (data: ProfileType) => any
 	setEditMode: (data: boolean) => void
 	profile: ProfileType
 }
-const EditProfile: React.FC<Tprops> = ({ profile, updateProfile, setEditMode }) => {
+const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
+	const dispatch = useDispatch()
+	const submit = (values: ProfileType) => {
+		dispatch(updateProfile(values))
+	}
 	const formik = useFormik({
 		initialValues: {
 			userId: profile.userId,
@@ -33,8 +38,8 @@ const EditProfile: React.FC<Tprops> = ({ profile, updateProfile, setEditMode }) 
 				.required('Required')
 		}),
 		onSubmit: (values) => {
-			updateProfile(values)
-				(setEditMode(false))
+			submit(values);
+			(setEditMode(false));
 		},
 	});
 	return <form
