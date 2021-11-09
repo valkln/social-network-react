@@ -2,10 +2,17 @@ import React from "react";
 import s from './SearchForm.module.css';
 import { useFormik } from "formik";
 import { FilterType } from "../../../types/types";
-type Tprops = {
-	onFilterChanged: (filter: FilterType) => void
-}
-const SearchForm: React.FC<Tprops> = (props) => {
+import { useDispatch, useSelector } from "react-redux";
+import { getPageSize } from "../../../redux/users-selectors";
+import { getUsers } from "../../../redux/users-reducer";
+
+const SearchForm: React.FC = () => {
+	const pageSize = useSelector(getPageSize)
+	const dispatch = useDispatch()
+	const onFilterChanged = (filter: FilterType) => {
+		dispatch(getUsers(1, pageSize, filter));
+	}
+
 	const formik = useFormik({
 		initialValues: {
 			name: '',
@@ -16,7 +23,7 @@ const SearchForm: React.FC<Tprops> = (props) => {
 				name: values.name,
 				friend: values.friend === 'null' ? null : values.friend === 'true' ? true : null
 			}
-			props.onFilterChanged(filter)
+			onFilterChanged(filter)
 		},
 	});
 	return (

@@ -1,10 +1,21 @@
 import s from './Paginator.module.css'
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentPage, getFilter, getPageSize, getTotalUsersCount } from '../../../redux/users-selectors';
+import { getUsers } from '../../../redux/users-reducer';
 
-type PropsType = { portionSize?: number, totalUsersCount: number, pageSize: number, currentPage: number, onPageChanged: (pageNumber: number) => void }
-const Paginator: React.FC<PropsType> = ({ portionSize = 10, totalUsersCount, pageSize, onPageChanged, currentPage }) => {
+const Paginator: React.FC = () => {
+	let portionSize = 10;
+	const totalUsersCount = useSelector(getTotalUsersCount);
+	const pageSize = useSelector(getPageSize);
+	const filter = useSelector(getFilter)
+	const currentPage = useSelector(getCurrentPage)
+	const dispatch = useDispatch()
+	const onPageChanged = (pageNumber: number) => {
+		dispatch(getUsers(pageNumber, pageSize, filter));
+	}
 	let pagesCount = Math.ceil(totalUsersCount / pageSize);
-	let pages = []
+	let pages = [];
 	for (let i = 1; i <= pagesCount; i++) {
 		pages.push(i);
 	}

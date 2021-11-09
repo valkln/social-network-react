@@ -4,12 +4,12 @@ import { NavLink } from 'react-router-dom';
 import defUserPic from '../../img/ava.png';
 import { UserType } from '../../types/types';
 type Tprops = {
-	user: UserType
-	followingInProgress: number[]
-	followDelete: (id: number, followed: boolean) => void
-	followPost: (id: number, followed: boolean) => void
+	user: UserType,
+	followingInProgress: Number[],
+	follow: (id: number, followed: boolean) => void,
+	unfollow: (id: number, followed: boolean) => void
 }
-const User: React.FC<Tprops> = ({ user, ...props }) => {
+const User: React.FC<Tprops> = ({ user, followingInProgress, follow, unfollow }) => {
 	return <div className={s.user}>
 		<NavLink to={'/profile/' + user.id}> <div className={s.userpic}> <img src={user.photos.small !== null ? user.photos.small : defUserPic} alt='userpic' /> </div> </NavLink>
 		<div className={s.userdata}>
@@ -17,14 +17,14 @@ const User: React.FC<Tprops> = ({ user, ...props }) => {
 			<div className={s.status}>{user.status}</div>
 			{user.followed ?
 				<button
-					disabled={props.followingInProgress.some(id => id === user.id)}
+					disabled={followingInProgress.some(id => id === user.id)}
 					className={s.follow}
-					onClick={() => { props.followDelete(user.id, user.followed) }}>Unfollow</button>
+					onClick={() => unfollow(user.id, user.followed)}>Unfollow</button>
 				:
 				<button
-					disabled={props.followingInProgress.some(id => id === user.id)}
+					disabled={followingInProgress.some(id => id === user.id)}
 					className={s.follow}
-					onClick={() => { props.followPost(user.id, user.followed) }}>Follow</button>
+					onClick={() => follow(user.id, user.followed)}>Follow</button>
 			}
 		</div>
 	</div>

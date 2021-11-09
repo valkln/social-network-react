@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Messages from './components/Messages/Messages';
-import UsersContainer from './components/Users/UsersContainer';
+import Users from './components/Users/Users';
 import Login from './components/Login/Login';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -31,7 +31,7 @@ class App extends React.Component<TProps> {
         <Route exact path='/'> <Redirect to={'/profile'} /> </Route>
         <Route path='/profile/:userId?'> <ProfileContainer /></Route>
         <Route path='/messages'><Messages /></Route>
-        <Route path='/users'> <UsersContainer /> </Route>
+        <Route path='/users'> <Users /> </Route>
         <Route path='/login'> <Login /> </Route>
       </div>
     </div>

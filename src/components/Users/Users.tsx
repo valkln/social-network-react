@@ -1,39 +1,51 @@
 import s from './Users.module.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import Paginator from './Paginator/Paginator';
 import User from './User';
-import { FilterType, UserType } from '../../types/types'
 import SearchForm from './SearchForm/SearchForm';
-type PropsType = {
-	portionSize?: number
-	totalUsersCount: number
-	pageSize: number
-	currentPage: number
-	users: UserType[]
-	followingInProgress: number[]
-	onPageChanged: (pageNumber: number) => void
-	followPost: (id: number, followed: boolean) => void
-	followDelete: (id: number, followed: boolean) => void
-	onFilterChanged: (filter: FilterType) => void
+import { useDispatch, useSelector } from 'react-redux';
+import { followDelete, followPost, getUsers } from '../../redux/users-reducer';
+import { getCurrentPage, getFilter, getFollowingProgress, getIsFetching, getPageSize, getUsersInfo } from '../../redux/users-selectors';
+import Preloader from '../common/Preloader/Preloader';
+import { compose } from 'redux';
+import AuthRedirect from '../../hoc/AuthRedirect';
+
+const Users: React.FC = () => {
+	const isFetching = useSelector(getIsFetching)
+	const users = useSelector(getUsersInfo)
+	const pageSize = useSelector(getPageSize);
+	const filter = useSelector(getFilter)
+	const currentPage = useSelector(getCurrentPage)
+	const followingInProgress = useSelector(getFollowingProgress)
+
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(getUsers(currentPage, pageSize, filter))
+	}, [])
+	const unfollow = (id: number, followed: boolean) => {
+		dispatch(followDelete(id, followed))
+	}
+	const follow = (id: number, followed: boolean) => {
+		dispatch(followPost(id, followed))
+	}
+	return <>
+		{isFetching ? <Preloader /> : null
+		}
+		<div className={s.users} >
+			<h3 className={s.users_title}>Find Users</h3>
+			<SearchForm />
+			<Paginator />
+			<div className={s.list}>
+				{users.map(u => <User
+					key={u.id}
+					user={u}
+					follow={follow}
+					unfollow={unfollow}
+					followingInProgress={followingInProgress}
+				/>
+				)}
+			</div>
+		</div >
+	</>
 }
-
-
-const Users: React.FC<PropsType> = (props) => {
-	return <div className={s.users} >
-		<h3 className={s.users_title}>Find Users</h3>
-		<SearchForm onFilterChanged={props.onFilterChanged} />
-		<Paginator onPageChanged={props.onPageChanged} currentPage={props.currentPage} totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} />
-		<div className={s.list}>
-			{props.users.map(u => <User
-				key={u.id}
-				user={u}
-				followingInProgress={props.followingInProgress}
-				followPost={props.followPost}
-				followDelete={props.followDelete}
-			/>
-			)}
-		</div>
-	</div >
-}
-
-export default Users;
+export default compose(AuthRedirect)(Users);
