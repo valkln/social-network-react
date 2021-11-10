@@ -9,6 +9,7 @@ import { getCurrentPage, getFilter, getFollowingProgress, getIsFetching, getPage
 import Preloader from '../common/Preloader/Preloader';
 import AuthRedirect from '../../hoc/AuthRedirect';
 import { useHistory } from 'react-router';
+import { Typography } from '@mui/material';
 
 const Users: React.FC = () => {
 	const isFetching = useSelector(getIsFetching)
@@ -47,8 +48,8 @@ const Users: React.FC = () => {
 	return <>
 		{isFetching ? <Preloader /> : null
 		}
-		<div className={s.users} >
-			<h3 className={s.users_title}>Find Users</h3>
+		<div>
+			<Typography component='h2' variant='h3' >Find Users</Typography>
 			<SearchForm />
 			<Paginator />
 			<div className={s.list}>

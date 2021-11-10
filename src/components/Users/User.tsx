@@ -1,8 +1,8 @@
-import s from './User.module.css'
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import defUserPic from '../../img/ava.png';
 import { UserType } from '../../types/types';
+import { Avatar, Button, Card, CardActions, CardContent, Typography } from '@mui/material';
 type Tprops = {
 	user: UserType,
 	followingInProgress: Number[],
@@ -10,23 +10,23 @@ type Tprops = {
 	unfollow: (id: number, followed: boolean) => void
 }
 const User: React.FC<Tprops> = ({ user, followingInProgress, follow, unfollow }) => {
-	return <div className={s.user}>
-		<NavLink to={'/profile/' + user.id}> <div className={s.userpic}> <img src={user.photos.small !== null ? user.photos.small : defUserPic} alt='userpic' /> </div> </NavLink>
-		<div className={s.userdata}>
-			<div className={s.name}>{user.name}</div>
-			<div className={s.status}>{user.status}</div>
+	return <Card sx={{ m: 1 }}>
+		<CardContent>
+			<NavLink to={'/profile/' + user.id}> <Avatar sx={{ width: 200, height: 200 }} src={user.photos.large !== null ? user.photos.large : defUserPic} alt='userpic' />  </NavLink>
+			<Typography variant='h5' component='div' >{user.name}</Typography>
+			<Typography variant='subtitle1' component='div' >{user.status}</Typography>
+		</CardContent>
+		<CardActions>
 			{user.followed ?
-				<button
+				<Button
 					disabled={followingInProgress.some(id => id === user.id)}
-					className={s.follow}
-					onClick={() => unfollow(user.id, user.followed)}>Unfollow</button>
+					onClick={() => unfollow(user.id, user.followed)}>Unfollow</Button>
 				:
-				<button
+				<Button
 					disabled={followingInProgress.some(id => id === user.id)}
-					className={s.follow}
-					onClick={() => follow(user.id, user.followed)}>Follow</button>
+					onClick={() => follow(user.id, user.followed)}>Follow</Button>
 			}
-		</div>
-	</div>
+		</CardActions>
+	</Card>
 }
 export default User;

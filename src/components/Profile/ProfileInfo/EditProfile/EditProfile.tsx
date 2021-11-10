@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { ProfileType } from "../../../../types/types";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "../../../../redux/profile-reducer";
+import { Button } from "@mui/material";
 type Tprops = {
 	setEditMode: (data: boolean) => void
 	profile: ProfileType
@@ -86,7 +87,7 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				/>
 				{formik.touched.aboutMe && formik.errors.aboutMe ? <div className={s.error}>{formik.errors.aboutMe}</div> : null}
 			</div>
-			<button className={s.btn} type="submit" >Submit</button>
+			<Button variant='contained' color='secondary' type="submit" >Submit</Button>
 		</div>
 		<div className={s.col}>
 			<h6>Contacts:</h6>

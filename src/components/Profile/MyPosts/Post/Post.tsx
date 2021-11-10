@@ -1,5 +1,5 @@
-import s from './Post.module.css'
 import defUserPic from '../../../../img/ava.png'
+import { Avatar, Card, CardActions, CardContent, Typography } from '@mui/material';
 type Tprops = {
 	userpic: string | null
 	message: string
@@ -7,16 +7,16 @@ type Tprops = {
 }
 const Post: React.FC<Tprops> = (props) => {
 	return (
-		<div className={s.Post} >
-			<img className={s.ava} src={props.userpic !== null ? props.userpic : defUserPic} alt='userpic'></img>
-			<div className={s.content}>
-				<div className={s.message}>{props.message}</div>
-				<div className={s.social}>
-					<span className={s.span}>like {props.likesCount}</span>
-					<span className={s.span}>repost</span>
-				</div>
-			</div>
-		</ div>
+		<Card sx={{ my: 1 }} >
+			<CardContent sx={{ display: 'flex' }}>
+				<Avatar sx={{ width: 100, height: 100, mr: 5 }} src={props.userpic !== null ? props.userpic : defUserPic} alt='userpic'></Avatar>
+				<Typography variant="body1" component="p" >{props.message}</Typography>
+			</CardContent>
+			<CardActions >
+				<span >like {props.likesCount}</span>
+				<span >repost</span>
+			</CardActions>
+		</Card>
 	);
 }
 

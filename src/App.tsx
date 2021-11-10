@@ -21,17 +21,19 @@ export const App = () => {
   }, [])
   if (!initialized) {
     return <Preloader />
-  } else return <div className="app-wrapper">
+  } else return <>
     <Header />
-    <Navbar />
-    <div className='app-wrapper-content'>
-      <Route exact path='/'> <Redirect to={'/profile'} /> </Route>
-      <Route path='/profile/:userId?'> <Profile /></Route>
-      <Route path='/messages'><Messages /></Route>
-      <Route path='/users'> <Users /> </Route>
-      <Route path='/login'> <Login /> </Route>
+    <div className="app-wrapper">
+      <Navbar />
+      <div className='app-wrapper-content'>
+        <Route exact path='/'> <Redirect to={'/profile'} /> </Route>
+        <Route path='/profile/:userId?'> <Profile /></Route>
+        <Route path='/messages'><Messages /></Route>
+        <Route path='/users'> <Users /> </Route>
+        <Route path='/login'> <Login /> </Route>
+      </div>
     </div>
-  </div>
+  </>
 }
 
 export default withRouter(App)

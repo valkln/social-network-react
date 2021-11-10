@@ -12,8 +12,10 @@
 	width: 75%;
 	height: 140px;
 	padding: 5px;
+	background-color: WhiteSmoke;
 }
 .field input {
+	background-color: WhiteSmoke;
 	padding: 5px;
 }
 .label {
@@ -22,12 +24,7 @@
 .checkbox input {
 	margin-left: 10px;
 }
-.btn {
-	background-color: #2ad4e0;
-	color: white;
-	padding: 5px 10px;
-	border-radius: 10px;
-}
+
 .error {
 	display: inline-block;
 	text-transform: none;

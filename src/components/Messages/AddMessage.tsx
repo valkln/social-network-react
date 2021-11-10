@@ -4,6 +4,7 @@ import s from './Messages.module.css';
 import * as Yup from 'yup';
 import { useDispatch } from "react-redux";
 import { actions } from "../../redux/messages-reducer";
+import { Button, TextField } from "@mui/material";
 
 const AddMessage: React.FC = () => {
 	const dispatch = useDispatch()
@@ -26,16 +27,18 @@ const AddMessage: React.FC = () => {
 	return <form
 		onSubmit={formik.handleSubmit}
 		className={s.myMessage}>
-		<textarea
+		<TextField
+			multiline
+			rows={4}
 			name="body"
-			className={s.text}
+			fullWidth
 			placeholder='Enter your message'
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
 			value={formik.values.body || ''}
 		/>
-		<button className={s.send} type="submit" >Submit</button>
 		{formik.touched.body && formik.errors.body ? <div className={s.error}>{formik.errors.body}</div> : null}
+		<Button className={s.button} variant='contained' color='secondary' type="submit" >send</Button>
 	</form >
 };
 export default AddMessage;

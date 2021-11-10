@@ -1,10 +1,10 @@
 import React from "react";
-import s from './SearchForm.module.css';
 import { useFormik } from "formik";
 import { FilterType } from "../../../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilter, getPageSize } from "../../../redux/users-selectors";
 import { getUsers } from "../../../redux/users-reducer";
+import { Button, MenuItem, Select, TextField } from "@mui/material";
 type TFriend = 'true' | 'null'
 const SearchForm: React.FC = () => {
 	const pageSize = useSelector(getPageSize)
@@ -30,19 +30,19 @@ const SearchForm: React.FC = () => {
 	return (
 		<form
 			onSubmit={formik.handleSubmit}>
-			<input
-				className={s.searchform}
+			<TextField
+				sx={{ m: 1, minWidth: 120 }}
 				name="name"
 				type="text"
 				onChange={formik.handleChange}
 				value={formik.values.name}
 				placeholder='enter username'
 			/>
-			<select className={s.searchform} onChange={formik.handleChange} value={formik.values.friend} name="friend">
-				<option value="null">all</option>
-				<option value="true">only followed</option>
-			</select>
-			<button className={s.submit} type="submit">find</button>
+			<Select sx={{ m: 1, minWidth: 120 }} onChange={formik.handleChange} value={formik.values.friend} name="friend">
+				<MenuItem value="null">all</MenuItem>
+				<MenuItem value="true">only followed</MenuItem>
+			</Select>
+			<Button variant="contained" color="primary" type="submit">find</Button>
 		</form>
 	);
 }

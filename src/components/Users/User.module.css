@@ -1,13 +1,3 @@
-.user {
-	background-color: #0096a1;
-	border-radius: 10px;
-	padding: 10px;
-	margin: 10px;
-	flex: 0 0 48%;
-	display: flex;
-	max-width: 48%;
-	height: 150px;
-}
 .userdata {
 	margin-left: 25px;
 	display: flex;

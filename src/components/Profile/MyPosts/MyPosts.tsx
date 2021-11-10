@@ -3,21 +3,21 @@ import AddPost from './AddPost';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 import { AppStateType } from '../../../redux/redux-store';
-import { actions } from '../../../redux/profile-reducer'
 import { connect, useSelector } from 'react-redux';
-import { PostType, ProfileType } from '../../../types/types';
+import { ProfileType } from '../../../types/types';
 import { getPosts } from '../../../redux/profile-selectors';
+import { Typography } from '@mui/material';
 type Tprops = {
 	profile: ProfileType
+	isOwner: boolean
 }
-const MyPosts: React.FC<Tprops> = ({ profile }) => {
+const MyPosts: React.FC<Tprops> = ({ profile, isOwner }) => {
 	const posts = useSelector(getPosts)
 	let postsElements = posts.map(p => <Post userpic={profile.photos.small} message={p.message} likesCount={p.likesCount} key={p.id} />)
 	return (
 		<div className={s.MyPosts}>
-			<h3>posts</h3>
-			<p className={s.new}>What's new?</p>
-			<AddPost />
+			<Typography variant='h3' component='h3'>Posts</Typography>
+			{isOwner ? <><p className={s.new}>What's new?</p><AddPost /></> : null}
 			<div className={s.posts}>{postsElements}</div>
 		</ div>
 	);
@@ -29,5 +29,4 @@ let msp = (state: AppStateType) => {
 		posts: state.profile.posts
 	}
 };
-const MyPostsContainer = connect(msp, { addPostAC: actions.addPostAC })(MyPosts)
-export default MyPostsContainer;
+export default connect(msp, {})(MyPosts)

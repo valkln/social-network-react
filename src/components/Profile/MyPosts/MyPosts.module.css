@@ -1,7 +1,4 @@
 .MyPosts {
-	color: white;
-	font-size: 30px;
-	text-transform: uppercase;
 	padding: 20px;
 }
 .post_text {
@@ -27,12 +24,4 @@
 .posts {
 	display: flex;
 	flex-direction: column-reverse;
-}
-.error {
-	display: inline-block;
-	text-transform: none;
-	border: 2px solid red;
-	border-radius: 20px;
-	padding: 10px;
-	font-size: 20px;
 }

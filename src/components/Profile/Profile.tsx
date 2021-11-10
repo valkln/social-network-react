@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import s from './Profile.module.css'
-import MyPostsContainer from './MyPosts/MyPosts';
+import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Preloader from '../common/Preloader/Preloader';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,9 +36,9 @@ const Profile: React.FC<RouteComponentProps<PathParamsType>> = (props) => {
 		return <Preloader />
 	}
 	else return (
-		<div className={s.profile}>
+		<div>
 			<ProfileInfo isOwner={isOwner} profile={profile} status={status} />
-			<MyPostsContainer profile={profile} />
+			<MyPosts isOwner={isOwner} profile={profile} />
 		</div>
 	);
 };

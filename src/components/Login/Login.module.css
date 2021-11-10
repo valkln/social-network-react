@@ -1,57 +1,5 @@
-.header {
-	color: white;
-	font-size: 30px;
-	text-align: center;
-	width: 25%;
-}
-
-.form {
-	width: 80%;
-	margin: 0 auto;
-	color: white;
-}
-.field {
-	margin: 10px 0;
-}
-.field label {
-	display: block;
-	margin: 10px 0;
-}
-.checkbox {
-	margin-bottom: 15px;
-}
-.checkbox label {
-	padding-right: 10px;
-}
-.btn {
-	padding: 5px 10px;
-}
-.input {
-	width: 100%;
-	padding: 5px 10px;
-	border-radius: 10px;
-}
-.label {
-	display: block;
-	margin: 5px auto;
-	text-align: center;
-	color: white;
-}
-.checkbox {
-	margin: 10px 0;
-}
-.checkbox label {
-	color: white;
-}
-.checkbox input {
-	margin-left: 15px;
-}
 .error {
-	margin: 5px 0;
-	width: 100%;
 	border: 1px solid red;
 	padding: 10px;
 	color: red;
-	background-color: #fff;
-	border-radius: 10px;
 }

@@ -50,7 +50,6 @@ export const getCaptcha = (): ThunkType => async (dispatch) => {
 	const res = await securityAPI.getCaptcha();
 	const captchaUrl = res.data.url;
 	dispatch(actions.setCaptcha(captchaUrl));
-
 }
 export const logout = (): ThunkType => async (dispatch) => {
 	const res = await authAPI.logout()

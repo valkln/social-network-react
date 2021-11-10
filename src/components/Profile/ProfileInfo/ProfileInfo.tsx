@@ -4,6 +4,7 @@ import ProfileStatus from './ProfileStatus';
 import EditProfile from './EditProfile/EditProfile';
 import { ContactsType, ProfileType } from '../../../types/types';
 import Userpic from './Userpic';
+import { Button, Typography } from '@mui/material';
 type TProfileInfoProps = {
 	profile: ProfileType
 	status: string
@@ -31,7 +32,7 @@ type TUserDataProps = {
 }
 const UserData: React.FC<TUserDataProps> = ({ profile, isOwner, goToEditMode }) => {
 	return <div className={s.userdata}>
-		<div className={s.fullName}>{profile.fullName}</div>
+		<Typography variant='h3' >{profile.fullName}</Typography>
 		{profile.aboutMe ? <div>{profile.aboutMe}</div> : null}
 		<div>Looking for a job: {profile.lookingForAJob ? 'yes' : 'no'}</div>
 		{profile.lookingForAJob ?
@@ -42,7 +43,7 @@ const UserData: React.FC<TUserDataProps> = ({ profile, isOwner, goToEditMode }) 
 				return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />
 			})}
 		</div>
-		{isOwner ? <button className={s.btn} onClick={goToEditMode}>Edit Profile</button> : undefined}
+		{isOwner ? <Button variant='contained' color='secondary' onClick={goToEditMode}>Edit Profile</Button> : undefined}
 	</div>
 }
 type TContactProps = {

@@ -1,9 +1,9 @@
 import React from "react";
-import s from './MyPosts.module.css'
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { useDispatch } from "react-redux";
 import { actions } from "../../../redux/profile-reducer";
+import { Button, TextField, Typography } from "@mui/material";
 
 const AddPost: React.FC = () => {
 	const dispatch = useDispatch()
@@ -24,18 +24,19 @@ const AddPost: React.FC = () => {
 		},
 	});
 	return <form
-		onSubmit={formik.handleSubmit}
-		className={s.myMessage}>
-		<textarea
+		onSubmit={formik.handleSubmit}>
+		<TextField
+			multiline
+			fullWidth
+			rows={4}
 			name="body"
-			className={s.post_text}
 			placeholder='Enter your message'
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
 			value={formik.values.body}
 		/>
-		<button className={s.send} type="submit" >Submit</button>
-		{formik.touched.body && formik.errors.body ? <div className={s.error}>{formik.errors.body}</div> : null}
+		<Button variant='contained' color='secondary' type="submit" >Submit</Button>
+		{formik.touched.body && formik.errors.body ? <Typography sx={{ border: '2px solid red' }} variant='subtitle1' component='span'>{formik.errors.body}</Typography> : null}
 	</form >
 };
 export default AddPost;
