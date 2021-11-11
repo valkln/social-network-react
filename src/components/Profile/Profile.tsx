@@ -12,7 +12,7 @@ type PathParamsType = {
 }
 
 const Profile: React.FC<RouteComponentProps<PathParamsType>> = (props) => {
-	const profile = useSelector(getProfileData)
+	let profile = useSelector(getProfileData)
 	let status = useSelector(getStatusData)
 	if (!status) status = ''
 	const isOwner = !props.match.params.userId
@@ -31,7 +31,7 @@ const Profile: React.FC<RouteComponentProps<PathParamsType>> = (props) => {
 			dispatch(getStatus(id))
 			dispatch(getProfile(id))
 		}
-	}, [])
+	}, [] && [props.match.params.userId])
 	if (!profile) {
 		return <Preloader />
 	}
