@@ -12,7 +12,7 @@ type Tprops = {
 const User: React.FC<Tprops> = ({ user, followingInProgress, follow, unfollow }) => {
 	return <Card sx={{ m: 1 }}>
 		<CardContent>
-			<NavLink to={'/profile/' + user.id}> <Avatar sx={{ width: 200, height: 200 }} src={user.photos.large !== null ? user.photos.large : defUserPic} alt='userpic' />  </NavLink>
+			<NavLink to={'/profile/' + user.id}> <Avatar sx={{ width: 'auto', height: 'auto' }} src={user.photos.large !== null ? user.photos.large : defUserPic} alt='userpic' />  </NavLink>
 			<Typography variant='h5' component='div' >{user.name}</Typography>
 			<Typography variant='subtitle1' component='div' >{user.status}</Typography>
 		</CardContent>

@@ -12,3 +12,6 @@ export const getMyId = (state: AppStateType) => {
 export const getMyLogin = (state: AppStateType) => {
 	return state.auth.login
 }
+export const getAuthError = (state: AppStateType) => {
+	return state.auth.authError
+}

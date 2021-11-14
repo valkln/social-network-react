@@ -7,9 +7,14 @@ UI made using Material UI
 
 ### Features available in project
 Logging in / out
+Display of authentification errors
 Sending messages on messaging page (local)
 Creating posts on profile page (local)
 Editing profile userpic, status and profile data
 Browsing list of users and profiles of users
 Searching users by username (all or only followed)
 Following and unfollowing users
+
+todos: 
+fix logout crash
+make adaptive UI

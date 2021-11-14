@@ -49,7 +49,7 @@ const Users: React.FC = () => {
 		{isFetching ? <Preloader /> : null
 		}
 		<div>
-			<Typography component='h2' variant='h3' >Find Users</Typography>
+			<Typography component='h2' variant='h3' sx={{ fontSize: '3vw' }} >Find Users</Typography>
 			<SearchForm />
 			<Paginator />
 			<div className={s.list}>

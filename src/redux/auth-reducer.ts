@@ -7,7 +7,8 @@ let initialState = {
 	email: null as string | null,
 	login: null as string | null,
 	isAuth: false,
-	captchaUrl: null as string | null
+	captchaUrl: null as string | null,
+	authError: null as string | null
 }
 export type initialStateType = typeof initialState
 
@@ -15,6 +16,7 @@ const authReducer = (state = initialState, action: ActionTypes): initialStateTyp
 	switch (action.type) {
 		case 'SET_AUTH_DATA':
 		case 'SET_CAPTCHA':
+		case 'SET_AUTH_ERROR':
 			return {
 				...state,
 				...action.payload
@@ -26,7 +28,8 @@ const authReducer = (state = initialState, action: ActionTypes): initialStateTyp
 const actions = {
 	setAuthData: (userId: number | null, email: string | null, login: string | null, isAuth: boolean) =>
 		({ type: 'SET_AUTH_DATA', payload: { userId, email, login, isAuth } } as const),
-	setCaptcha: (captchaUrl: string) => ({ type: 'SET_CAPTCHA', payload: { captchaUrl } } as const)
+	setCaptcha: (captchaUrl: string) => ({ type: 'SET_CAPTCHA', payload: { captchaUrl } } as const),
+	setAuthError: (authError: string) => ({ type: 'SET_AUTH_ERROR', payload: { authError } } as const)
 }
 type ActionTypes = InferActionTypes<typeof actions>
 //thunks
@@ -42,8 +45,12 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 	const res = await authAPI.login(email, password, rememberMe, captcha)
 	if (res.resultCode === resultCode.Success) {
 		dispatch(getAuth())
-	} else if (res.resultCode === resultCode.RequiredCaptcha) {
-		dispatch(getCaptcha())
+	} else {
+		if (res.resultCode === resultCode.RequiredCaptcha) {
+			dispatch(getCaptcha())
+		}
+		let message = res.messages.length > 0 ? res.messages[0] : "Some error";
+		dispatch(actions.setAuthError(message))
 	}
 }
 export const getCaptcha = (): ThunkType => async (dispatch) => {

@@ -1,8 +1,9 @@
-.users_title {
-	font-size: 20px;
-	padding: 10px;
-}
 .list {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+@media (min-width: 767px) {
+	.list {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	}
 }

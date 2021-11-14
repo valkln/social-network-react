@@ -1,30 +1,11 @@
-.form {
-	display: flex;
-}
 .col {
 	width: 50%;
 	flex: 1 1 50%;
+	padding: 20px;
 }
 .field {
-	margin: 5px 0;
+	margin: 10px 0;
 }
-.field textarea {
-	width: 75%;
-	height: 140px;
-	padding: 5px;
-	background-color: WhiteSmoke;
-}
-.field input {
-	background-color: WhiteSmoke;
-	padding: 5px;
-}
-.label {
-	display: block;
-}
-.checkbox input {
-	margin-left: 10px;
-}
-
 .error {
 	display: inline-block;
 	text-transform: none;

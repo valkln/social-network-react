@@ -5,11 +5,13 @@ import * as Yup from 'yup';
 import { ProfileType } from "../../../../types/types";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "../../../../redux/profile-reducer";
-import { Button } from "@mui/material";
+import { Button, Checkbox, TextField } from "@mui/material";
+import { Box } from "@mui/system";
 type Tprops = {
 	setEditMode: (data: boolean) => void
 	profile: ProfileType
 }
+
 const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 	const dispatch = useDispatch()
 	const submit = (values: ProfileType) => {
@@ -38,18 +40,20 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 			fullName: Yup.string()
 				.required('Required')
 		}),
-		onSubmit: (values) => {
-			submit(values);
-			(setEditMode(false));
+		onSubmit: async (values) => {
+			await submit(values)
+			setEditMode(false);
 		},
 	});
-	return <form
+	return <Box
+		component='form'
+		sx={{ display: 'flex' }}
 		onSubmit={formik.handleSubmit}
 		className={s.form}>
 		<div className={s.col}>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="fullName">Full name</label>
-				<input
+				<TextField
+					label='Full name'
 					name="fullName"
 					type="text"
 					onChange={formik.handleChange}
@@ -60,16 +64,19 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 			</div>
 			<div className={s.checkbox}>
 				<label htmlFor="lookingForAJob">Looking for a job</label>
-				<input
+				<Checkbox
 					name="lookingForAJob"
-					type="checkbox"
 					onChange={formik.handleChange}
-					checked={formik.values.lookingForAJob}
+					defaultChecked={profile.lookingForAJob}
+					value={formik.values.lookingForAJob}
 				/>
 			</div>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="lookingForAJobDescription">Skills</label>
-				<textarea
+				<TextField
+					label='skills'
+					multiline
+					fullWidth
+					rows={5}
 					name="lookingForAJobDescription"
 					onChange={formik.handleChange}
 					onBlur={formik.handleBlur}
@@ -78,8 +85,11 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				{formik.touched.lookingForAJobDescription && formik.errors.lookingForAJobDescription ? <div className={s.error}>{formik.errors.lookingForAJobDescription}</div> : null}
 			</div>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="aboutMe">About Me</label>
-				<textarea
+				<TextField
+					label='About Me'
+					multiline
+					fullWidth
+					rows={5}
 					name="aboutMe"
 					onChange={formik.handleChange}
 					onBlur={formik.handleBlur}
@@ -92,8 +102,8 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 		<div className={s.col}>
 			<h6>Contacts:</h6>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="contacts.github">github</label>
-				<input
+				<TextField
+					label='github'
 					name="contacts.github"
 					type="text"
 					onChange={formik.handleChange}
@@ -102,8 +112,8 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				/>
 			</div>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="contacts.vk">vk</label>
-				<input
+				<TextField
+					label='vk'
 					name="contacts.vk"
 					type="text"
 					onChange={formik.handleChange}
@@ -112,8 +122,8 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				/>
 			</div>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="contacts.facebook">facebook</label>
-				<input
+				<TextField
+					label='facebook'
 					name="contacts.facebook"
 					type="text"
 					onChange={formik.handleChange}
@@ -121,9 +131,9 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 					value={formik.values.contacts.facebook}
 				/>
 			</div>
-			<div className={s.field}>
-				<label className={s.label} htmlFor="contacts.instagram">instagram</label>
-				<input
+			<div className={s.field} >
+				<TextField
+					label='instagram'
 					name="contacts.instagram"
 					type="text"
 					onChange={formik.handleChange}
@@ -132,8 +142,8 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				/>
 			</div>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="contacts.twitter">twitter</label>
-				<input
+				<TextField
+					label='twitter'
 					name="contacts.twitter"
 					type="text"
 					onChange={formik.handleChange}
@@ -142,8 +152,8 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				/>
 			</div>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="contacts.website">website</label>
-				<input
+				<TextField
+					label='website'
 					name="contacts.website"
 					type="text"
 					onChange={formik.handleChange}
@@ -152,8 +162,8 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				/>
 			</div>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="contacts.youtube">youtube</label>
-				<input
+				<TextField
+					label='youtube'
 					name="contacts.youtube"
 					type="text"
 					onChange={formik.handleChange}
@@ -162,8 +172,8 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				/>
 			</div>
 			<div className={s.field}>
-				<label className={s.label} htmlFor="contacts.mainLink">mainLink</label>
-				<input
+				<TextField
+					label='mainLink'
 					name="contacts.mainLink"
 					type="text"
 					onChange={formik.handleChange}
@@ -172,6 +182,6 @@ const EditProfile: React.FC<Tprops> = ({ profile, setEditMode }) => {
 				/>
 			</div>
 		</div>
-	</form >
+	</Box >
 };
 export default EditProfile;
