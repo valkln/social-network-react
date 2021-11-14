@@ -3,6 +3,7 @@
 This is my training project, from [IT-Kamasutra React course](https://www.youtube.com/playlist?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8)
 ## Used Technologies
 typescript, react, react-redux, redux, redux-thunk, react hooks, formik
+
 UI made using Material UI
 
 ### Features available in project
