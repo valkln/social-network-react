@@ -16,5 +16,4 @@ Searching users by username (all or only followed)
 Following and unfollowing users
 
 todos: 
-fix logout crash
 make adaptive UI

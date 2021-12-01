@@ -61,6 +61,7 @@ export const getCaptcha = (): ThunkType => async (dispatch) => {
 export const logout = (): ThunkType => async (dispatch) => {
 	const res = await authAPI.logout()
 	if (res.resultCode === resultCode.Success) {
+		//dispatch gets TypeError (not a function), needs to be fixed
 		dispatch(actions.setAuthData(null, null, null, false))
 	}
 }
